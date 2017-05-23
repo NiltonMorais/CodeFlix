@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => CodeFlix\User::class,
+            'model' => \CodeFlix\Models\User::class,
         ],
 
         // 'users' => [

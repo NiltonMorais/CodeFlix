@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(CodeFlix\User::class, function (Faker\Generator $faker) {
+$factory->define(\CodeFlix\Models\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -20,5 +20,11 @@ $factory->define(CodeFlix\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->state(\CodeFlix\Models\User::class,'admin', function (Faker\Generator $faker) {
+    return [
+        'role' => \CodeFlix\Models\User::ROLE_ADMIN
     ];
 });
