@@ -33,6 +33,10 @@
                             'onclick'=>"event.preventDefault();document.getElementById(\"form-logout\").submit();"
                         ]
                     ],
+                    [
+                        'link' => route('admin.user_settings.edit'),
+                        'title' => 'Alterar senha'
+                    ],
                 ]
             ],
         ];
