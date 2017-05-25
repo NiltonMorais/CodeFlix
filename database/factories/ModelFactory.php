@@ -35,3 +35,11 @@ $factory->define(\CodeFlix\Models\Category::class, function (Faker\Generator $fa
     ];
 });
 
+$factory->define(\CodeFlix\Models\Serie::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence(3),
+        'description' => $faker->sentence(10),
+        'thumb' => "thumb.jpg"
+    ];
+});
+
