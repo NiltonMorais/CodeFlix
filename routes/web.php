@@ -45,6 +45,8 @@ Route::group([
         Route::name('user_settings.update')->put('users/settings','Auth\UserSettingsController@update');
         Route::resource('users','UsersController');
         Route::resource('categories','CategoriesController');
+        Route::get('series/{serie}/thumb_asset','SeriesController@thumbAsset')->name('series.thumb_asset');
+        Route::get('series/{serie}/thumb_small_asset','SeriesController@thumbSmallAsset')->name('series.thumb_small_asset');
         Route::resource('series','SeriesController');
         Route::group(['prefix'=>'videos','as'=>'videos.'],function(){
             Route::name('relations.create')->get('{video}/relations','VideoRelationsController@create');

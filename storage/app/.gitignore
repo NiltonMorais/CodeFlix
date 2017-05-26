@@ -1,3 +1,7 @@
 *
 !public/
 !.gitignore
+!files
+!files/**/*
+!videos_test
+!videos_test/.gitkeep
