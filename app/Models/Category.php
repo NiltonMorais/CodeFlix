@@ -4,9 +4,10 @@ namespace CodeFlix\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
-class Category extends Model implements TableInterface
+class Category extends Model implements Transformable, TableInterface
 {
     use TransformableTrait;
 

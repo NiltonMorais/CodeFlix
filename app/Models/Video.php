@@ -7,26 +7,40 @@ use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
-class Serie extends Model implements Transformable, TableInterface
+class Video extends Model implements Transformable, TableInterface
 {
     use TransformableTrait;
 
-    protected $fillable = ['title', 'description'];
+    protected $fillable = [
+        'title',
+        'description',
+        'duration',
+        'published',
+        'serie_id',
+    ];
+
+    public function serie()
+    {
+        return $this->belongsTo(Serie::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 
     public function getTableHeaders()
     {
-        return ['#', 'Título', 'Descrição'];
+        return ['#'];
     }
+
 
     public function getValueForHeader($header)
     {
         switch ($header) {
             case '#':
                 return $this->id;
-            case 'Título':
-                return $this->title;
-            case 'Descrição':
-                return $this->description;
         }
     }
+
 }

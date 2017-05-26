@@ -237,6 +237,7 @@ return [
         'Button' => Bootstrapper\Facades\Button::class,
         'Navbar' => Bootstrapper\Facades\Navbar::class,
         'Navigation' => Bootstrapper\Facades\Navigation::class,
+        'MediaObject' => Bootstrapper\Facades\MediaObject::class,
 
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
 
