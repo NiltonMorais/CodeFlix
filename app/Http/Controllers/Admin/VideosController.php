@@ -138,4 +138,9 @@ class VideosController extends Controller
         session()->flash('message', 'Video excluído com sucesso.');
         return redirect()->route('admin.videos.index');
     }
+
+    public function fileAsset(Video $video)
+    {
+        return response()->download($video->file_path);
+    }
 }

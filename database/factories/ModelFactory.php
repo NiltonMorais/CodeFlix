@@ -50,8 +50,7 @@ $factory->define(\CodeFlix\Models\Video::class, function (Faker\Generator $faker
         'duration' => rand(1,30),
         'file' => 'file.jpg',
         'thumb' => 'thumb.jpg',
-        'published' => rand(0,1),
-        'completed' => 1,
+        'published' => rand(0,1)
     ];
 });
 

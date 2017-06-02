@@ -11,6 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $disk = config('filesystems.default');
+        $rootPath = config("filesystems.disks.{$disk}.root");
+        \File::deleteDirectory($rootPath);
+
         $this->call(UsersTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
         $this->call(SeriesTableSeeder::class);

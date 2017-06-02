@@ -1,0 +1,9 @@
+[2017-06-01 23:55:03] local.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 60 seconds exceeded in C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\imagine\imagine\lib\Imagine\Image\Metadata\ExifMetadataReader.php:39
+Stack trace:
+#0 {main}  
+[2017-06-01 23:58:42] local.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 60 seconds exceeded in C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\imagine\imagine\lib\Imagine\Gd\Imagine.php:87
+Stack trace:
+#0 {main}  
+[2017-06-02 00:03:19] local.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Maximum execution time of 60 seconds exceeded in C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\imagine\imagine\lib\Imagine\Gd\Imagine.php:87
+Stack trace:
+#0 {main}  

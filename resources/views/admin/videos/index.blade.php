@@ -12,8 +12,8 @@
             ->callback('Descrição', function($field,$video){
                 return MediaObject::withContents(
                     [
-                        'image' => '//placehold.it/64x64',
-                        'link'  => '#',
+                        'image' => $video->thumb_small_path,
+                        'link'  => $video->file_path,
                         'heading'  => $video->title,
                         'body'  => $video->description
                     ]

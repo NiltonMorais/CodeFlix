@@ -4,6 +4,8 @@ use Illuminate\Database\Seeder;
 
 class SeriesTableSeeder extends Seeder
 {
+    use \CodeFlix\Media\ThumbsData;
+
     /**
      * Run the database seeds.
      *
@@ -11,10 +13,6 @@ class SeriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $disk = config('filesystems.default');
-        $rootPath = config("filesystems.disks.{$disk}.root");
-        \File::deleteDirectory("{$rootPath}/series");
-
         /**
          * @var \Illuminate\Database\Eloquent\Collection $series
          */
@@ -24,15 +22,5 @@ class SeriesTableSeeder extends Seeder
         $series->each(function($serie)use($repository, $collectionThumbs){
             $repository->uploadThumb($serie,$collectionThumbs->random());
         });
-    }
-
-    protected function getThumbs()
-    {
-        return new \Illuminate\Support\Collection([
-           new \Illuminate\Http\UploadedFile(
-               storage_path('app/files/faker/thumbs/teste.jpg'),
-               'teste.jpg'
-           ),
-        ]);
     }
 }
