@@ -143,4 +143,14 @@ class VideosController extends Controller
     {
         return response()->download($video->file_path);
     }
+
+    public function thumbAsset(Video $video)
+    {
+        return response()->download($video->thumb_path);
+    }
+
+    public function thumbSmallAsset(Video $video)
+    {
+        return response()->download($video->thumb_small_path);
+    }
 }

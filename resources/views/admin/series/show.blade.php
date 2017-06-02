@@ -26,6 +26,12 @@
             <table class="table table-bordered">
                 <tbody>
                 <tr>
+                    <th scope="row">Capa</th>
+                    <td>
+                        <img src="{{$serie->thumb_asset}}" height="360">
+                    </td>
+                </tr>
+                <tr>
                     <th scope="row">#</th>
                     <td>{{$serie->id}}</td>
                 </tr>
