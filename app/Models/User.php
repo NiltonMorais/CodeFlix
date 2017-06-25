@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Prettus\Repository\Contracts\Transformable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements TableInterface
+class User extends Authenticatable implements TableInterface, JWTSubject
 {
     use Notifiable;
     use SoftDeletes;
@@ -77,5 +78,20 @@ class User extends Authenticatable implements TableInterface
             case 'Email':
                 return $this->email;
         }
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->id;
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [
+            'user' => [
+                'id' => $this->name,
+                'email' => $this->email,
+            ]
+        ];
     }
 }

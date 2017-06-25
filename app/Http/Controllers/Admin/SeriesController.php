@@ -66,7 +66,7 @@ class SeriesController extends Controller
         }
 
         $data = $form->getFieldValues();
-        $data['thumb'] = env('THUMBNAIL_DEFAULT');
+        $data['thumb'] = env('user_default');
         Model::unguard();
         $this->repository->create($data);
         session()->flash('message', 'Série criada com sucesso.');

@@ -4,6 +4,8 @@ namespace CodeFlix\Providers;
 
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use CodeFlix\Models\Video;
+use Dingo\Api\Exception\Handler;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -35,5 +37,12 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment() !== 'prod') {
             $this->app->register(IdeHelperServiceProvider::class);
         }
+        $handler = app(Handler::class);
+        $handler->register(function(AuthenticationException $exception){
+           return response()->json([
+               'error' => 'Unauthenticated',
+               'message' => 'Usuário não autenticado'
+           ],401);
+        });
     }
 }

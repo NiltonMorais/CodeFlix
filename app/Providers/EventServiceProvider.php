@@ -2,7 +2,8 @@
 
 namespace CodeFlix\Providers;
 
-use Illuminate\Support\Facades\Event;
+use CodeFlix\Listeners\AddTokenToHeaderListener;
+use Dingo\Api\Event\ResponseWasMorphed;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -13,8 +14,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'CodeFlix\Events\Event' => [
-            'CodeFlix\Listeners\EventListener',
+        ResponseWasMorphed::class => [
+            AddTokenToHeaderListener::class,
         ],
     ];
 

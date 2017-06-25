@@ -233,3 +233,134 @@ Stack trace:
 #26 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(122): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #27 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #28 {main}  
+[2017-06-25 04:05:44] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Class 'Tymon\JWTAuth\Providers\LaravelServiceProvider' not found in C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php:208
+Stack trace:
+#0 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php(144): Illuminate\Foundation\ProviderRepository->createProvider('Tymon\\JWTAuth\\P...')
+#1 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php(61): Illuminate\Foundation\ProviderRepository->compileManifest(Array)
+#2 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(549): Illuminate\Foundation\ProviderRepository->load(Array)
+#3 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#4 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(208): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap(Object(Illuminate\Foundation\Application))
+#5 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(267): Illuminate\Foundation\Application->bootstrapWith(Array)
+#6 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(114): Illuminate\Foundation\Console\Kernel->bootstrap()
+#7 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 {main}  
+[2017-06-25 04:18:55] local.ERROR: Symfony\Component\Console\Exception\CommandNotFoundException: Command "route:lists" is not defined.
+
+Did you mean one of these?
+    route:list
+    route:cache
+    route:clear in C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\symfony\console\Application.php:556
+Stack trace:
+#0 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\symfony\console\Application.php(197): Symfony\Component\Console\Application->find('route:lists')
+#1 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\symfony\console\Application.php(124): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(122): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 {main}  
+[2017-06-25 04:23:31] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Type error: Argument 1 passed to Tymon\JWTAuth\JWTGuard::login() must be an instance of Tymon\JWTAuth\Contracts\JWTSubject, instance of CodeFlix\Models\User given, called in C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\tymon\jwt-auth\src\JWTGuard.php on line 123 in C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\tymon\jwt-auth\src\JWTGuard.php:136
+Stack trace:
+#0 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\tymon\jwt-auth\src\JWTGuard.php(123): Tymon\JWTAuth\JWTGuard->login(Object(CodeFlix\Models\User))
+#1 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\app\Http\Controllers\Api\AuthController.php(17): Tymon\JWTAuth\JWTGuard->attempt(Array)
+#2 [internal function]: CodeFlix\Http\Controllers\Api\AuthController->accessToken(Object(Dingo\Api\Http\Request))
+#3 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
+#4 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(44): Illuminate\Routing\Controller->callAction('accessToken', Array)
+#5 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Route.php(203): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(CodeFlix\Http\Controllers\Api\AuthController), 'accessToken')
+#6 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Route.php(160): Illuminate\Routing\Route->runController()
+#7 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Router.php(559): Illuminate\Routing\Route->run()
+#8 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(30): Illuminate\Routing\Router->Illuminate\Routing\{closure}(Object(Dingo\Api\Http\Request))
+#9 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\dingo\api\src\Http\Middleware\PrepareController.php(45): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Dingo\Api\Http\Request))
+#10 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Dingo\Api\Http\Middleware\PrepareController->handle(Object(Dingo\Api\Http\Request), Object(Closure))
+#11 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(53): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Dingo\Api\Http\Request))
+#12 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(102): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Dingo\Api\Http\Request))
+#13 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Router.php(561): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#14 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Router.php(520): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Dingo\Api\Http\Request))
+#15 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Router.php(498): Illuminate\Routing\Router->dispatchToRoute(Object(Dingo\Api\Http\Request))
+#16 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\dingo\api\src\Routing\Adapter\Laravel.php(81): Illuminate\Routing\Router->dispatch(Object(Dingo\Api\Http\Request))
+#17 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\dingo\api\src\Routing\Router.php(513): Dingo\Api\Routing\Adapter\Laravel->dispatch(Object(Dingo\Api\Http\Request), 'v1')
+#18 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\dingo\api\src\Http\Middleware\Request.php(126): Dingo\Api\Routing\Router->dispatch(Object(Dingo\Api\Http\Request))
+#19 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(114): Dingo\Api\Http\Middleware\Request->Dingo\Api\Http\Middleware\{closure}(Object(Dingo\Api\Http\Request))
+#20 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(30): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Dingo\Api\Http\Request))
+#21 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Dingo\Api\Http\Request), Object(Closure))
+#22 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(30): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Dingo\Api\Http\Request))
+#23 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Dingo\Api\Http\Request), Object(Closure))
+#24 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Dingo\Api\Http\Request))
+#25 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle(Object(Dingo\Api\Http\Request), Object(Closure))
+#26 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode.php(46): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Dingo\Api\Http\Request))
+#27 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode->handle(Object(Dingo\Api\Http\Request), Object(Closure))
+#28 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(102): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Dingo\Api\Http\Request))
+#29 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\dingo\api\src\Http\Middleware\Request.php(127): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#30 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\dingo\api\src\Http\Middleware\Request.php(103): Dingo\Api\Http\Middleware\Request->sendRequestThroughRouter(Object(Dingo\Api\Http\Request))
+#31 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Dingo\Api\Http\Middleware\Request->handle(Object(Dingo\Api\Http\Request), Object(Closure))
+#32 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(53): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#33 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(102): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#34 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(149): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#35 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#36 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#37 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\server.php(21): require_once('C:\\Users\\Sony V...')
+#38 {main}  
+[2017-06-25 04:23:31] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Type error: Argument 1 passed to Tymon\JWTAuth\JWTGuard::login() must be an instance of Tymon\JWTAuth\Contracts\JWTSubject, instance of CodeFlix\Models\User given, called in C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\tymon\jwt-auth\src\JWTGuard.php on line 123 in C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\tymon\jwt-auth\src\JWTGuard.php:136
+Stack trace:
+#0 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\tymon\jwt-auth\src\JWTGuard.php(123): Tymon\JWTAuth\JWTGuard->login(Object(CodeFlix\Models\User))
+#1 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\app\Http\Controllers\Api\AuthController.php(17): Tymon\JWTAuth\JWTGuard->attempt(Array)
+#2 [internal function]: CodeFlix\Http\Controllers\Api\AuthController->accessToken(Object(Dingo\Api\Http\Request))
+#3 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(55): call_user_func_array(Array, Array)
+#4 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(44): Illuminate\Routing\Controller->callAction('accessToken', Array)
+#5 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Route.php(203): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(CodeFlix\Http\Controllers\Api\AuthController), 'accessToken')
+#6 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Route.php(160): Illuminate\Routing\Route->runController()
+#7 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Router.php(559): Illuminate\Routing\Route->run()
+#8 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(30): Illuminate\Routing\Router->Illuminate\Routing\{closure}(Object(Dingo\Api\Http\Request))
+#9 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\dingo\api\src\Http\Middleware\PrepareController.php(45): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Dingo\Api\Http\Request))
+#10 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Dingo\Api\Http\Middleware\PrepareController->handle(Object(Dingo\Api\Http\Request), Object(Closure))
+#11 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(53): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Dingo\Api\Http\Request))
+#12 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(102): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Dingo\Api\Http\Request))
+#13 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Router.php(561): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#14 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Router.php(520): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Dingo\Api\Http\Request))
+#15 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Router.php(498): Illuminate\Routing\Router->dispatchToRoute(Object(Dingo\Api\Http\Request))
+#16 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\dingo\api\src\Routing\Adapter\Laravel.php(81): Illuminate\Routing\Router->dispatch(Object(Dingo\Api\Http\Request))
+#17 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\dingo\api\src\Routing\Router.php(513): Dingo\Api\Routing\Adapter\Laravel->dispatch(Object(Dingo\Api\Http\Request), 'v1')
+#18 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\dingo\api\src\Http\Middleware\Request.php(126): Dingo\Api\Routing\Router->dispatch(Object(Dingo\Api\Http\Request))
+#19 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(114): Dingo\Api\Http\Middleware\Request->Dingo\Api\Http\Middleware\{closure}(Object(Dingo\Api\Http\Request))
+#20 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(30): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Dingo\Api\Http\Request))
+#21 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Dingo\Api\Http\Request), Object(Closure))
+#22 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(30): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Dingo\Api\Http\Request))
+#23 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Dingo\Api\Http\Request), Object(Closure))
+#24 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Dingo\Api\Http\Request))
+#25 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle(Object(Dingo\Api\Http\Request), Object(Closure))
+#26 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode.php(46): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Dingo\Api\Http\Request))
+#27 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode->handle(Object(Dingo\Api\Http\Request), Object(Closure))
+#28 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(102): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Dingo\Api\Http\Request))
+#29 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\dingo\api\src\Http\Middleware\Request.php(127): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#30 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\dingo\api\src\Http\Middleware\Request.php(103): Dingo\Api\Http\Middleware\Request->sendRequestThroughRouter(Object(Dingo\Api\Http\Request))
+#31 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(148): Dingo\Api\Http\Middleware\Request->handle(Object(Dingo\Api\Http\Request), Object(Closure))
+#32 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Routing\Pipeline.php(53): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#33 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(102): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#34 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(149): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#35 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#36 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#37 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\server.php(21): require_once('C:\\Users\\Sony V...')
+#38 {main}  
+[2017-06-25 05:07:14] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Parse error: syntax error, unexpected '}', expecting ';' in C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\app\Providers\AppServiceProvider.php:45
+Stack trace:
+#0 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\composer\ClassLoader.php(322): Composer\Autoload\includeFile('C:\\Users\\Sony V...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('CodeFlix\\Provid...')
+#2 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(612): spl_autoload_call('CodeFlix\\Provid...')
+#3 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(570): Illuminate\Foundation\Application->resolveProvider('CodeFlix\\Provid...')
+#4 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php(75): Illuminate\Foundation\Application->register('CodeFlix\\Provid...')
+#5 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(549): Illuminate\Foundation\ProviderRepository->load(Array)
+#6 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#7 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(208): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap(Object(Illuminate\Foundation\Application))
+#8 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(160): Illuminate\Foundation\Application->bootstrapWith(Array)
+#9 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->bootstrap()
+#10 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#11 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#12 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\server.php(21): require_once('C:\\Users\\Sony V...')
+#13 {main}  
+[2017-06-25 05:40:08] local.ERROR: Symfony\Component\Console\Exception\CommandNotFoundException: Command "optmize" is not defined.
+
+Did you mean this?
+    optimize in C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\symfony\console\Application.php:556
+Stack trace:
+#0 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\symfony\console\Application.php(197): Symfony\Component\Console\Application->find('optmize')
+#1 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\symfony\console\Application.php(124): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(122): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 C:\Users\Sony Vaio\PhpstormProjects\CodeFlix\artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 {main}  
