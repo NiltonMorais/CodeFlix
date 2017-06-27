@@ -7,6 +7,7 @@ use CodeFlix\Models\Video;
 use Dingo\Api\Exception\Handler;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Dusk\DuskServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if ($this->app->environment() !== 'prod') {
             $this->app->register(IdeHelperServiceProvider::class);
+            $this->app->register(DuskServiceProvider::class);
         }
         $handler = app(Handler::class);
         $handler->register(function(AuthenticationException $exception){

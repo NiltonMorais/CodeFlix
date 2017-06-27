@@ -12,10 +12,10 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+/*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 
 ApiRoute::version('v1',function(){
     ApiRoute::group(['namespace'=>'CodeFlix\Http\Controllers\Api','as' => 'api'],function(){
@@ -38,9 +38,11 @@ ApiRoute::version('v1',function(){
            'expires' => 3
        ],function(){
             ApiRoute::post('/logout','AuthController@logout');
-            ApiRoute::get('/teste',function(){
-                return 'authenticado';
+            ApiRoute::get('/user',function(Request $request){
+                return $request->user('api');
             });
+
+           // ApiRoute::resource('categories','CategoriesController@index');
        });
     });
 });
