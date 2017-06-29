@@ -1,0 +1,25 @@
+<ion-content padding>
+  <ion-grid>
+    <ion-row justify-content-center="">
+      <ion-col col-sm-auto col-md-5>
+        <ion-card color="dark">
+          <ion-card-header>
+            <img src="assets/img/favicon.ico"/>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-card-title text-center>CodeFlix</ion-card-title>
+            <form (submit)="login()">
+              <ion-item>
+                <ion-input type="text" name="email" placeholder="E-mail"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="password" name="password" placeholder="Senha"></ion-input>
+              </ion-item>
+              <button ion-button type="submit" block color="light">Login</button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
