@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {JwtClient} from "../../providers/jwt-client";
 
 /**
  * Generated class for the LoginPage page.
@@ -14,7 +15,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  email:string;
+  password:string;
+
+  constructor(
+      public navCtrl: NavController,
+      public navParams: NavParams,
+      private jwtClient: JwtClient) {
   }
 
   ionViewDidLoad() {
@@ -22,6 +29,9 @@ export class LoginPage {
   }
 
   login(){
-    alert('Clicou');
+    this.jwtClient.accessToken({email: this.email,password: this.password})
+        .then((token)=>{
+          console.log(token);
+        });
   }
 }

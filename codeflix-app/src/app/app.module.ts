@@ -9,6 +9,10 @@ import {ListPage} from '../pages/list/list';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/login/login";
+import {HttpModule} from "@angular/http";
+import {JwtClient} from "../providers/jwt-client";
+import {IonicStorageModule} from "@ionic/storage";
+import {JwtHelper} from "angular2-jwt";
 
 @NgModule({
     declarations: [
@@ -18,6 +22,10 @@ import {LoginPage} from "../pages/login/login";
         LoginPage
     ],
     imports: [
+        IonicStorageModule.forRoot({
+            driverOrder: ['localstorage']
+        }),
+        HttpModule,
         BrowserModule,
         IonicModule.forRoot(MyApp),
     ],
@@ -29,6 +37,8 @@ import {LoginPage} from "../pages/login/login";
         LoginPage
     ],
     providers: [
+        JwtHelper,
+        JwtClient,
         StatusBar,
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
