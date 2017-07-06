@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {JwtClient} from "../../providers/jwt-client";
+import {Component} from '@angular/core';
+import {IonicPage, MenuController, NavController, NavParams, ToastController} from 'ionic-angular';
+import {Auth} from "../../providers/auth";
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the LoginPage page.
@@ -10,28 +11,46 @@ import {JwtClient} from "../../providers/jwt-client";
  */
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+    selector: 'page-login',
+    templateUrl: 'login.html',
 })
 export class LoginPage {
 
-  email:string;
-  password:string;
+    user = {
+        email: 'admin@user.com',
+        password: 'secret'
+    };
 
-  constructor(
-      public navCtrl: NavController,
-      public navParams: NavParams,
-      private jwtClient: JwtClient) {
-  }
+    constructor(public navCtrl: NavController,
+                public menuCtrl: MenuController,
+                public navParams: NavParams,
+                public toastCtrl: ToastController,
+                private auth: Auth) {
+        this.menuCtrl.enable(false);
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad LoginPage');
+    }
 
-  login(){
-    this.jwtClient.accessToken({email: this.email,password: this.password})
-        .then((token)=>{
-          console.log(token);
-        });
-  }
+    login() {
+        this.auth.login(this.user)
+            .then(() => {
+                this.afterLogin();
+            })
+            .catch(()=>{
+                let toast = this.toastCtrl.create({
+                    message: 'Email e/ou senha inválidos.',
+                    duration: 3000,
+                    position: 'top',
+                    cssClass: '.toast-login-error'
+                });
+                toast.present();
+            });
+    }
+
+    afterLogin() {
+        this.menuCtrl.enable(true);
+        this.navCtrl.push(HomePage);
+    }
 }

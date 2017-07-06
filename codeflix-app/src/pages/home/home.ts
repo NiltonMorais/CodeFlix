@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import {Auth} from "../../decorators/auth.decorator";
 
+@Auth()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'

@@ -14,3 +14,21 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+ion-app{
+  ion-menu{
+    ion-content{
+      background-color: map_get($colors, dark) !important;
+      color: map_get($colors, light) !important;
+    }
+  }
+}
+
+.toast-login-error{
+  .toast-container{
+    background-color: map_get($colors, light) !important;
+    .toast-message{
+      color: map_get($colors, dark) !important;
+    }
+  }
+}

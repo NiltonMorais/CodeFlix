@@ -1,17 +1,14 @@
 import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import {JwtCredentials} from "../models/jwt-credentials";
 import {Storage} from "@ionic/storage";
-import {JwtHelper} from "angular2-jwt";
+import {AuthHttp, JwtHelper} from "angular2-jwt";
+import {Env} from "../models/env";
 
-/*
- Generated class for the JwtClient provider.
+declare var ENV:Env;
 
- See https://angular.io/docs/ts/latest/guide/dependency-injection.html
- for more info on providers and Angular DI.
- */
 @Injectable()
 export class JwtClient {
 
@@ -19,7 +16,7 @@ export class JwtClient {
     private _payload = null;
 
     constructor(
-        public http: Http,
+        public authHttp: AuthHttp,
         public storage:Storage,
         public jwtHelpher:JwtHelper) {
         this.getToken();
@@ -44,7 +41,7 @@ export class JwtClient {
             if(this._token){
                 resolve(this._token);
             }
-            this.storage.get('token').then((token)=>{
+            this.storage.get(ENV.TOKEN_NAME).then((token)=>{
                 this._token = token;
                 resolve(this._token);
             });
@@ -52,13 +49,31 @@ export class JwtClient {
     }
 
     accessToken(jwtCredentials: JwtCredentials): Promise<string> {
-        return this.http.post('http://localhost:8000/api/access_token', jwtCredentials)
+        return this.authHttp.post(`${ENV.API_URL}/access_token`, jwtCredentials)
             .toPromise()
             .then((response: Response) => {
                 let token = response.json().token;
                 this._token = token;
-                this.storage.set('token',token);
+                this.storage.set(ENV.TOKEN_NAME,token);
                 return token;
             })
+    }
+
+    revokeToken():Promise<null>{
+        let headers = new Headers();
+        headers.set('Authorization',`Bearer ${this._token}`);
+        let requestOptions = new RequestOptions({headers});
+        return this.authHttp.post(`${ENV.API_URL}/logout`,{},requestOptions)
+            .toPromise()
+            .then((response: Response) => {
+                this.clear();
+                return null;
+            })
+    }
+
+    private clear(){
+        this._token = null;
+        this._payload = null;
+        this.storage.clear();
     }
 }

@@ -10,10 +10,10 @@
             <ion-card-title text-center>CodeFlix</ion-card-title>
             <form (submit)="login()">
               <ion-item>
-                <ion-input type="text" name="email" placeholder="E-mail" [(ngModel)]="email"></ion-input>
+                <ion-input type="text" name="email" placeholder="E-mail" [(ngModel)]="user.email"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-input type="password" name="password" placeholder="Senha" [(ngModel)]="password"></ion-input>
+                <ion-input type="password" name="password" placeholder="Senha" [(ngModel)]="user.password"></ion-input>
               </ion-item>
               <button ion-button type="submit" block color="light">Login</button>
             </form>

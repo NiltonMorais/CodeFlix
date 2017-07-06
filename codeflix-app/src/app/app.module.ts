@@ -9,11 +9,13 @@ import {ListPage} from '../pages/list/list';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/login/login";
-import {HttpModule} from "@angular/http";
+import {Http, HttpModule} from "@angular/http";
 import {JwtClient} from "../providers/jwt-client";
-import {IonicStorageModule} from "@ionic/storage";
-import {JwtHelper} from "angular2-jwt";
-
+import {IonicStorageModule, Storage} from "@ionic/storage";
+import {AuthConfig, AuthHttp, JwtHelper} from "angular2-jwt";
+import {Auth} from "../providers/auth";
+import {Env} from "../models/env";
+declare var ENV:Env;
 @NgModule({
     declarations: [
         MyApp,
@@ -27,7 +29,12 @@ import {JwtHelper} from "angular2-jwt";
         }),
         HttpModule,
         BrowserModule,
-        IonicModule.forRoot(MyApp),
+        IonicModule.forRoot(MyApp,{},{
+            links: [
+                {component: LoginPage, name: 'LoginPage',segment:'login'},
+                {component: HomePage, name: 'HomePage',segment:'home'},
+            ]
+        }),
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -37,11 +44,25 @@ import {JwtHelper} from "angular2-jwt";
         LoginPage
     ],
     providers: [
+        Auth,
         JwtHelper,
         JwtClient,
         StatusBar,
         SplashScreen,
-        {provide: ErrorHandler, useClass: IonicErrorHandler}
+        {provide: ErrorHandler, useClass: IonicErrorHandler},
+        {
+            provide: AuthHttp,
+            deps: [Http, Storage],
+            useFactory(http,storage){
+                let authConfig = new AuthConfig({
+                   headerPrefix: 'Bearer',
+                    noJwtError: true,
+                    noClientCheck: true,
+                    tokenGetter: (()=>storage.get(ENV.TOKEN_NAME))
+                });
+                return new AuthHttp(authConfig,http)
+            }
+        }
     ]
 })
 export class AppModule {
