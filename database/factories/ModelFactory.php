@@ -54,3 +54,23 @@ $factory->define(\CodeFlix\Models\Video::class, function (Faker\Generator $faker
     ];
 });
 
+$factory->define(\CodeFlix\Models\Plan::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'description' => $faker->sentence(10),
+        'value' => $faker->randomFloat(2,50,100),
+    ];
+});
+
+$factory->state(\CodeFlix\Models\Plan::class,\CodeFlix\Models\Plan::DURATION_MONTHLY, function (Faker\Generator $faker) {
+    return [
+        'duration' => \CodeFlix\Models\Plan::DURATION_MONTHLY
+    ];
+});
+
+$factory->state(\CodeFlix\Models\Plan::class,\CodeFlix\Models\Plan::DURATION_YEARLY, function (Faker\Generator $faker) {
+    return [
+        'duration' => \CodeFlix\Models\Plan::DURATION_YEARLY
+    ];
+});
+

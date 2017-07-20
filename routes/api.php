@@ -31,7 +31,9 @@ ApiRoute::version('v1',function(){
            'limit' => 10,
            'expires' => 1
        ])->name('.refresh_token');
-       // rotas AUTENTICADAS
+        ApiRoute::post('register','RegisterUsersController@store');
+
+       // ROTAS AUTENTICADAS --------------------
        ApiRoute::group([
            'middleware'=>['api.throttle','api.auth'],
            'limit' => 100,
@@ -41,7 +43,7 @@ ApiRoute::version('v1',function(){
             ApiRoute::get('/user',function(Request $request){
                 return $request->user('api');
             });
-
+           ApiRoute::patch('/user/settings','UsersController@updateSettings');
            // ApiRoute::resource('categories','CategoriesController@index');
        });
     });

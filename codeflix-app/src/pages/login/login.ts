@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {IonicPage, MenuController, NavController, NavParams, ToastController} from 'ionic-angular';
+import {Component} from "@angular/core";
+import {IonicPage, MenuController, NavController, NavParams, ToastController} from "ionic-angular";
 import {Auth} from "../../providers/auth";
 import {HomePage} from "../home/home";
 
@@ -38,9 +38,25 @@ export class LoginPage {
             .then(() => {
                 this.afterLogin();
             })
-            .catch(()=>{
+            .catch(() => {
                 let toast = this.toastCtrl.create({
                     message: 'Email e/ou senha inválidos.',
+                    duration: 3000,
+                    position: 'top',
+                    cssClass: '.toast-reverse'
+                });
+                toast.present();
+            });
+    }
+
+    loginFacebook() {
+        this.auth.loginFacebook()
+            .then(() => {
+                this.afterLogin();
+            })
+            .catch(() => {
+                let toast = this.toastCtrl.create({
+                    message: 'Erro ao realizar login no facebook',
                     duration: 3000,
                     position: 'top',
                     cssClass: '.toast-login-error'

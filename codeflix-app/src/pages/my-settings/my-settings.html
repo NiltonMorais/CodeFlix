@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Minhas configurações</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+      Minhas informações
+    </ion-list-header>
+    <ion-item>
+      <form (submit)="submit()">
+        <ion-item>
+          <ion-input type="password" name="password" placeholder="Senha"
+                     [(ngModel)]="user.password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password" name="password_confirmation" placeholder="Confirme a senha"
+                     [(ngModel)]="user.password_confirmation"></ion-input>
+        </ion-item>
+        <button ion-button type="submit" block color="dark">Salvar</button>
+      </form>
+    </ion-item>
+  </ion-list>
+</ion-content>

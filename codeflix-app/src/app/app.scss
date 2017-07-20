@@ -24,7 +24,7 @@ ion-app{
   }
 }
 
-.toast-login-error{
+.toast-reverse{
   .toast-container{
     background-color: map_get($colors, light) !important;
     .toast-message{

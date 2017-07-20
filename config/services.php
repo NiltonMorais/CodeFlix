@@ -25,6 +25,12 @@ return [
         'region' => 'us-east-1',
     ],
 
+    'facebook' => [
+      'client_id' => '118027252156148',
+      'client_secret' => 'dc814f4dcd46031fd935eb36fca61bd0',
+      'redirect' => 'http://localhost:8000/qualquer-coisa',
+    ],
+
     'sparkpost' => [
         'secret' => env('SPARKPOST_SECRET'),
     ],

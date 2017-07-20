@@ -16,6 +16,8 @@
                 <ion-input type="password" name="password" placeholder="Senha" [(ngModel)]="user.password"></ion-input>
               </ion-item>
               <button ion-button type="submit" block color="light">Login</button>
+              <button ion-button type="button" block color="primary" icon-right (click)="loginFacebook()">
+                Login com <ion-icon name="logo-facebook"></ion-icon></button>
             </form>
           </ion-card-content>
         </ion-card>
