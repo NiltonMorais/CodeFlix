@@ -18,7 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });*/
 
 ApiRoute::version('v1',function(){
-    ApiRoute::group(['namespace'=>'CodeFlix\Http\Controllers\Api','as' => 'api'],function(){
+    ApiRoute::group([
+        'namespace'=>'CodeFlix\Http\Controllers\Api',
+        'as' => 'api',
+        'middleware' => 'bindings',
+    ],function(){
        ApiRoute::post('/access_token',[
            'uses'=>'AuthController@accessToken',
            'middleware'=>'api.throttle',
@@ -44,7 +48,15 @@ ApiRoute::version('v1',function(){
                 return $request->user('api');
             });
            ApiRoute::patch('/user/settings','UsersController@updateSettings');
+           ApiRoute::post('/plans/{plan}/payments','PaymentsController@store');
            // ApiRoute::resource('categories','CategoriesController@index');
+
+           // ************************************
+           // ÁREA DO ASSINANTE *****************
+           // ************************************
+           ApiRoute::group(['middleware' => 'check-subscriptions'],function(){
+
+           });
        });
     });
 });

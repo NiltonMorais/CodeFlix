@@ -3,7 +3,6 @@
 namespace CodeFlix\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
-use Jrean\UserVerification\Middleware\IsVerified;
 
 class Kernel extends HttpKernel
 {
@@ -58,6 +57,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \CodeFlix\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'isVerified' => IsVerified::class,
+        'isVerified' => \Jrean\UserVerification\Middleware\IsVerified::class,
+        'check-subscriptions' => \CodeFlix\Http\Middleware\CheckSubscriptions::class,
     ];
 }

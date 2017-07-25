@@ -74,3 +74,8 @@ $factory->state(\CodeFlix\Models\Plan::class,\CodeFlix\Models\Plan::DURATION_YEA
     ];
 });
 
+$factory->define(\CodeFlix\Models\Order::class, function (Faker\Generator $faker) {
+    return [
+        'value' => $faker->randomFloat(2,50,100),
+    ];
+});

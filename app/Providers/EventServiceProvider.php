@@ -2,8 +2,6 @@
 
 namespace CodeFlix\Providers;
 
-use CodeFlix\Listeners\AddTokenToHeaderListener;
-use Dingo\Api\Event\ResponseWasMorphed;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -14,9 +12,15 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        ResponseWasMorphed::class => [
-            AddTokenToHeaderListener::class,
+        \Dingo\Api\Event\ResponseWasMorphed::class => [
+            \CodeFlix\Listeners\AddTokenToHeaderListener::class,
         ],
+        \CodeFlix\Events\PayPalPaymentApproved::class => [
+            \CodeFlix\Listeners\CreateOrderListener::class
+        ],
+        \Prettus\Repository\Events\RepositoryEntityCreated::class => [
+            \CodeFlix\Listeners\CreateSubscriptionListener::class
+        ]
     ];
 
     /**
