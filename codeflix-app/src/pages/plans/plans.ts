@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from "@angular/core";
+import {IonicPage, NavController, NavParams} from "ionic-angular";
 import {PlanResource} from "../../providers/resources/plan.resource";
+import {Observable} from "rxjs/Observable";
 
 /**
  * Generated class for the PlansPage page.
@@ -10,19 +11,19 @@ import {PlanResource} from "../../providers/resources/plan.resource";
  */
 @IonicPage()
 @Component({
-  selector: 'page-plans',
-  templateUrl: 'plans.html',
+    selector: 'page-plans',
+    templateUrl: 'plans.html',
 })
 export class PlansPage {
-  plans = [];
-  constructor(
-      public navCtrl: NavController,
-      public planResource: PlanResource,
-      public navParams: NavParams) {
-  }
+    plans: Observable<Array<Object>>;
 
-  ionViewDidLoad() {
-    this.planResource.all().then(plans => this.plans = plans);
-  }
+    constructor(public navCtrl: NavController,
+                public planResource: PlanResource,
+                public navParams: NavParams) {
+    }
+
+    ionViewDidLoad() {
+        this.plans = this.planResource.all();
+    }
 
 }

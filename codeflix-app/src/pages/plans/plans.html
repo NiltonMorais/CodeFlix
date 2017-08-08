@@ -19,7 +19,7 @@
 <ion-content padding>
     <ion-grid>
         <ion-row>
-            <ion-col col-sm-6 *ngFor="let plan of plans">
+            <ion-col col-sm-6 *ngFor="let plan of plans | async">
                 <ion-card text-center>
                     <ion-card-header>
                         <ion-item color="grey" text-center>
