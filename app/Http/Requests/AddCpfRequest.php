@@ -3,8 +3,9 @@
 namespace CodeFlix\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class UserSettingRequest extends FormRequest
+class AddCpfRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,6 +17,15 @@ class UserSettingRequest extends FormRequest
         return true;
     }
 
+    public function validationData()
+    {
+        $cpf = preg_replace("/[^0-9]/", "", $this->get('cpf'));
+        $this->replace([
+            'cpf' => $cpf
+        ]);
+        return parent::validationData();
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,7 +34,11 @@ class UserSettingRequest extends FormRequest
     public function rules()
     {
         return [
-            'password' => 'required|min:6|max:16|confirmed'
+            'cpf' => [
+                'required',
+                'cpf',
+                Rule::unique('users', 'cpf')->ignore($this->user('api')->id)
+            ]
         ];
     }
 }

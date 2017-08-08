@@ -3,6 +3,7 @@
 namespace CodeFlix\Providers;
 
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
+use Code\Validator\Cpf;
 use CodeFlix\Exceptions\SubscriptionInvalidException;
 use CodeFlix\Models\Video;
 use Dingo\Api\Exception\Handler;
@@ -28,6 +29,10 @@ class AppServiceProvider extends ServiceProvider
                     $video->save();
                 }
             }
+        });
+
+        \Validator::extend('cpf', function($attributes, $value, $parameters, $validator){
+            return (new Cpf())->isValid($value);
         });
     }
 

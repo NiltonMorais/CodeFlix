@@ -48,6 +48,8 @@ ApiRoute::version('v1',function(){
                 return $request->user('api');
             });
            ApiRoute::patch('/user/settings','UsersController@updateSettings');
+           ApiRoute::patch('/user/cpf','UsersController@addCpf');
+           ApiRoute::get('/plans','PlansController@index');
            ApiRoute::post('/plans/{plan}/payments','PaymentsController@store');
            // ApiRoute::resource('categories','CategoriesController@index');
 

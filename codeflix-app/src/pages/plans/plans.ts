@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {PlanResource} from "../../providers/resources/plan.resource";
 
 /**
  * Generated class for the PlansPage page.
@@ -13,12 +14,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'plans.html',
 })
 export class PlansPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  plans = [];
+  constructor(
+      public navCtrl: NavController,
+      public planResource: PlanResource,
+      public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PlansPage');
+    this.planResource.all().then(plans => this.plans = plans);
   }
 
 }

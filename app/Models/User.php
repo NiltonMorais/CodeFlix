@@ -24,7 +24,7 @@ class User extends Authenticatable implements TableInterface, JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role'
+        'name', 'email', 'password', 'role', 'cpf'
     ];
 
     /**
@@ -107,8 +107,10 @@ class User extends Authenticatable implements TableInterface, JWTSubject
     {
         return [
             'user' => [
-                'id' => $this->name,
+                'id' => $this->id,
+                'name' => $this->name,
                 'email' => $this->email,
+                'subscription_valid' => $this->hasSubscriptionValid(),
             ]
         ];
     }
