@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {IonicPage, NavController, NavParams, ToastController} from "ionic-angular";
 import {Auth} from "../../decorators/auth.decorator";
-import {UserResource} from "../../providers/resources/user-resource";
+import {UserResource} from "../../providers/resources/user.resource";
 
 /**
  * Generated class for the MySettingsPage page.

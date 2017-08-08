@@ -3,16 +3,32 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Bem-vindo a CodeFlix</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <ion-card text-center>
+    <ion-card-header>
+      <ion-card-title>Conteúdo que faz <br/>acontecer!</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Se divirta, se emocione!</p>
+      <p>Tudo que você precisa está aqui.</p>
+    </ion-card-content>
+  </ion-card>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <ion-card text-center>
+    <ion-card-content>
+      <ion-list>
+        <ion-list-header>Aqui você encontra</ion-list-header>
+        <button ion-item text-center color="secondary">Séries</button>
+        <button ion-item text-center color="primary">Vídeos variados</button>
+        <button ion-item text-center color="danger">Seleção de vídeos por categoria</button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <h1 text-center>Comece agora!</h1>
+  <button ion-button block color="dark" navPush="AddCpfPage">Assine agora!</button>
 </ion-content>

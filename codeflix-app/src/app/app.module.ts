@@ -19,7 +19,12 @@ import {Env} from "../models/env";
 import {DefaultXHRBackend} from "../providers/default-xhr-backend";
 import {Redirector} from "../providers/redirector";
 import {Facebook} from "@ionic-native/facebook";
-import {UserResource} from "../providers/resources/user-resource";
+import {UserResource} from "../providers/resources/user.resource";
+import {HomeSubscriberPage} from "../pages/home-subscriber/home-subscriber";
+import {AddCpfPage} from "../pages/add-cpf/add-cpf";
+import {PaymentPage} from "../pages/payment/payment";
+import {PlansPage} from "../pages/plans/plans";
+import {TextMaskModule} from "angular2-text-mask";
 declare var ENV: Env;
 @NgModule({
     declarations: [
@@ -28,6 +33,10 @@ declare var ENV: Env;
         ListPage,
         LoginPage,
         MySettingsPage,
+        HomeSubscriberPage,
+        AddCpfPage,
+        PaymentPage,
+        PlansPage,
     ],
     imports: [
         IonicStorageModule.forRoot({
@@ -35,11 +44,16 @@ declare var ENV: Env;
         }),
         HttpModule,
         BrowserModule,
+        TextMaskModule,
         IonicModule.forRoot(MyApp, {}, {
             links: [
                 {component: MySettingsPage, name: 'MySettingsPage', segment: 'my-settings'},
                 {component: LoginPage, name: 'LoginPage', segment: 'login'},
                 {component: HomePage, name: 'HomePage', segment: 'home'},
+                {component: PaymentPage, name: 'PaymentPage', segment: 'plan/:plan/payment'},
+                {component: PlansPage, name: 'PlansPage', segment: 'plans'},
+                {component: AddCpfPage, name: 'AddCpfPage', segment: 'add-cpf'},
+                {component: HomeSubscriberPage, name: 'HomeSubscriberPage', segment: 'subscriber/home'},
             ]
         }),
     ],
@@ -50,6 +64,10 @@ declare var ENV: Env;
         ListPage,
         LoginPage,
         MySettingsPage,
+        HomeSubscriberPage,
+        AddCpfPage,
+        PaymentPage,
+        PlansPage,
     ],
     providers: [
         JwtHelper,

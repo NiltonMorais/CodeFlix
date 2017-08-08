@@ -33,4 +33,10 @@ export class UserResource {
             .then(response => response.json().user);
     }
 
+    addCpf(cpf:string): Promise<Object>{
+        return this.authHttp.patch(`${ENV.API_URL}/user/cpf`,{cpf})
+            .toPromise()
+            .then(response => response.json().user);
+    }
+
 }

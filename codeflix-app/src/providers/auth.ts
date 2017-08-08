@@ -3,7 +3,7 @@ import "rxjs/add/operator/map";
 import {JwtClient} from "./jwt-client";
 import {JwtPayload} from "../models/jwt-payload";
 import {Facebook, FacebookLoginResponse} from "@ionic-native/facebook";
-import {UserResource} from "./resources/user-resource";
+import {UserResource} from "./resources/user.resource";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 /*
@@ -55,13 +55,16 @@ export class Auth {
             });
     }
 
-    loginFacebook(): Promise<string> {
+    loginFacebook(): Promise<Object> {
         return this.fb.login(['email'])
             .then((response: FacebookLoginResponse) => {
                 let accessToken = response.authResponse.accessToken;
                 return this.userResource
                     .register(accessToken)
-                    .then(token => this.jwtClient.setToken(token));
+                    .then(token => {
+                        this.jwtClient.setToken(token);
+                        return this.user();
+                    });
             });
     }
 

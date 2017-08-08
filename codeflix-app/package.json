@@ -29,8 +29,17 @@
     "@ionic-native/status-bar": "3.12.1",
     "@ionic/storage": "2.0.1",
     "angular2-jwt": "^0.2.3",
+    "angular2-text-mask": "^8.0.1",
+    "cordova-browser": "~4.1.0",
+    "cordova-plugin-console": "1.0.5",
+    "cordova-plugin-device": "1.1.4",
+    "cordova-plugin-facebook4": "~1.9.1",
+    "cordova-plugin-splashscreen": "~4.0.1",
+    "cordova-plugin-statusbar": "2.2.2",
+    "cordova-plugin-whitelist": "1.3.1",
     "crypto-md5": "^1.0.0",
     "ionic-angular": "3.4.2",
+    "ionic-plugin-keyboard": "~2.2.1",
     "ionicons": "3.0.0",
     "rxjs": "5.4.0",
     "sw-toolbox": "3.6.0",
@@ -38,6 +47,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "1.3.8",
+    "ionic": "3.7.0",
     "typescript": "2.3.4"
   },
   "cordovaPlugins": [
@@ -49,5 +59,22 @@
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [],
-  "description": "codeflix-app: An Ionic project"
+  "description": "codeflix-app: An Ionic project",
+  "cordova": {
+    "platforms": [
+      "browser"
+    ],
+    "plugins": {
+      "cordova-plugin-console": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-facebook4": {
+        "APP_ID": "118027252156148",
+        "APP_NAME": "CodeFlix"
+      },
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-whitelist": {},
+      "ionic-plugin-keyboard": {}
+    }
+  }
 }

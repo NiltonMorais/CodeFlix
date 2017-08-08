@@ -11,16 +11,18 @@ import {NavController} from "ionic-angular";
 @Injectable()
 export class Redirector {
   subject = new Subject;
+  link;
 
-  config(navCtrl:NavController, link = 'LoginPage'){
+  config(navCtrl:NavController){
     this.subject.subscribe(()=>{
       setTimeout(()=>{
-        navCtrl.setRoot(link);
+        navCtrl.setRoot(this.link);
       });
     })
   }
 
-  redirector(){
+  redirector(link = 'LoginPage'){
+    this.link = link;
     this.subject.next();
   }
 }
