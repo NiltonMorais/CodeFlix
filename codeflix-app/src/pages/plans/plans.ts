@@ -1,7 +1,8 @@
 import {Component} from "@angular/core";
-import {IonicPage, NavController, NavParams} from "ionic-angular";
+import {IonicPage, LoadingController, NavController, NavParams} from "ionic-angular";
 import {PlanResource} from "../../providers/resources/plan.resource";
 import {Observable} from "rxjs/Observable";
+import "rxjs/add/operator/map";
 
 /**
  * Generated class for the PlansPage page.
@@ -19,11 +20,20 @@ export class PlansPage {
 
     constructor(public navCtrl: NavController,
                 public planResource: PlanResource,
+                public loadingCtrl: LoadingController,
                 public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
-        this.plans = this.planResource.all();
+        let loading = this.loadingCtrl.create({
+            content: 'Carregando...'
+        });
+        loading.present();
+        this.plans = this.planResource.all()
+            .map(plans => {
+                loading.dismiss();
+                return plans;
+            });
     }
 
 }
