@@ -50,7 +50,8 @@ ApiRoute::version('v1',function(){
            ApiRoute::patch('/user/settings','UsersController@updateSettings');
            ApiRoute::patch('/user/cpf','UsersController@addCpf');
            ApiRoute::get('/plans','PlansController@index');
-           ApiRoute::post('/plans/{plan}/payments','PaymentsController@store');
+           ApiRoute::post('/plans/{plan}/payments','PaymentsController@makePayment');
+           ApiRoute::patch('/plans/{plan}/payments','PaymentsController@approvalPayment');
            // ApiRoute::resource('categories','CategoriesController@index');
 
            // ************************************

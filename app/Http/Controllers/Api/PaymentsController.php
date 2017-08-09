@@ -20,7 +20,14 @@ class PaymentsController extends Controller
         $this->paymentClient = $paymentClient;
     }
 
-    public function store(OrderRequest $request, Plan $plan)
+    public function makePayment(Plan $plan){
+        $payment = $this->paymentClient->makePayment($plan);
+        return [
+            'approval_url' => $payment->getApprovalLink(),
+            'payment_id' => $payment->getId()
+        ];
+    }
+    public function approvalPayment(OrderRequest $request, Plan $plan)
     {
         $order = $this->paymentClient->doPayment($plan);
         return $order;
