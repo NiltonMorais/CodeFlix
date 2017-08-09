@@ -27,6 +27,10 @@ class Plan extends Model implements Transformable, TableInterface
         'duration' => 'integer'
     ];
 
+    public function getSkuAttribute()
+    {
+        return "plan-{$this->id}";
+    }
     /**
      * A list of headers to be used when a table is displayed
      *
