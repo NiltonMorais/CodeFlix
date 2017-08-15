@@ -2,11 +2,11 @@
 
 namespace CodeFlix\Repositories;
 
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use CodeFlix\Repositories\Interfaces\PaypalWebProfileRepository;
 use CodeFlix\Models\PaypalWebProfile;
+use CodeFlix\Repositories\Interfaces\PaypalWebProfileRepository;
 use CodeFlix\Validators\PaypalWebProfileValidator;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class PaypalWebProfileRepositoryEloquent
@@ -14,6 +14,12 @@ use CodeFlix\Validators\PaypalWebProfileValidator;
  */
 class PaypalWebProfileRepositoryEloquent extends BaseRepository implements PaypalWebProfileRepository
 {
+    public function create(array $attributes)
+    {
+        $attributes['code'] = 'processing';
+        parent::create($attributes);
+    }
+
     /**
      * Specify Model class name
      *
@@ -24,7 +30,6 @@ class PaypalWebProfileRepositoryEloquent extends BaseRepository implements Paypa
         return PaypalWebProfile::class;
     }
 
-    
 
     /**
      * Boot up the repository, pushing criteria
