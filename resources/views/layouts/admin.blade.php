@@ -28,6 +28,7 @@
                 'Vendas',
                 [
                     ['link' => route('admin.plans.index'), 'title' => 'Planos'],
+                    ['link' => route('admin.web_profiles.index'), 'title' => 'PayPal'],
                 ]
             ],
         ];

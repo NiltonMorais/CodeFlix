@@ -243,6 +243,7 @@ return [
         'Navbar' => Bootstrapper\Facades\Navbar::class,
         'Navigation' => Bootstrapper\Facades\Navigation::class,
         'MediaObject' => Bootstrapper\Facades\MediaObject::class,
+        'BootstrapImage' => Bootstrapper\Facades\Image::class,
 
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
         'Image' => \Folklore\Image\Facades\Image::class,

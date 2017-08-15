@@ -79,3 +79,11 @@ $factory->define(\CodeFlix\Models\Order::class, function (Faker\Generator $faker
         'value' => $faker->randomFloat(2,50,100),
     ];
 });
+
+$factory->define(\CodeFlix\Models\PaypalWebProfile::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'logo_url' => $faker->imageUrl(100,100),
+        'code' => str_random(),
+    ];
+});

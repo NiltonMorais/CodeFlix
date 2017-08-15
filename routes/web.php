@@ -46,6 +46,8 @@ Route::group([
         Route::resource('users','UsersController');
         Route::resource('categories','CategoriesController');
         Route::resource('plans','PlansController');
+        Route::resource('web_profiles','PaypalWebProfilesController');
+
         Route::get('series/{serie}/thumb_asset','SeriesController@thumbAsset')->name('series.thumb_asset');
         Route::get('series/{serie}/thumb_small_asset','SeriesController@thumbSmallAsset')->name('series.thumb_small_asset');
         Route::resource('series','SeriesController');
