@@ -59,11 +59,18 @@ class WebProfileClient
 
     public function update(PaypalWebProfile $webProfileModel)
     {
+        $webProfile = WebProfile::get($webProfileModel->code, $this->apiContext);
+        $webProfile->setName("$webProfileModel->name-".uniqid());
+        $webProfile->getPresentation()
+            ->setLogoImage($webProfileModel->logo_url)
+            ->setBrandName($webProfileModel->name);
 
+        return $webProfile->update($this->apiContext);
     }
 
     public function delete($webProfileId)
     {
-
+        $webProfile = WebProfile::get($webProfileId, $this->apiContext);
+        return $webProfile->delete($this->apiContext);
     }
 }

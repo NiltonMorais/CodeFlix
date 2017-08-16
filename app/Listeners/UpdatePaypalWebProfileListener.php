@@ -31,6 +31,10 @@ class UpdatePaypalWebProfileListener
      */
     public function handle(RepositoryEntityUpdated $event)
     {
+        if(!\Config::get('webprofile_created')){
+            return;
+        }
+
         $model = $event->getModel();
         if (!($model instanceof PaypalWebProfile)) {
             return;
