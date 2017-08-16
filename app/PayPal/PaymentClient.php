@@ -80,6 +80,7 @@ class PaymentClient
 
         $payment = new Payment();
         $payment
+            ->setExperienceProfileId($plan->webProfile->code)
             ->setIntent('sale')
             ->setPayer($payer)
             ->setRedirectUrls($redirectUrls)

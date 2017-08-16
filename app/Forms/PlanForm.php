@@ -2,6 +2,7 @@
 
 namespace CodeFlix\Forms;
 
+use CodeFlix\Models\PaypalWebProfile;
 use CodeFlix\Models\Plan;
 use Kris\LaravelFormBuilder\Form;
 
@@ -19,6 +20,13 @@ class PlanForm extends Form
                 'label' => 'Duração',
                 'choices' => $durations,
                 'rules' => 'required|in:'.implode(',',array_keys($durations)),
+            ])
+            ->add('paypal_web_profile_id', 'entity',[
+                'class' => PaypalWebProfile::class,
+                'property' => 'name',
+                'empty_value' => 'Selecione o perfil PayPal',
+                'label' => 'Perfil Web PayPal',
+                'rules' => 'required|exists:paypal_web_profiles,id',
             ])
             ->add('name', 'text',[
                 'label' => 'Nome',

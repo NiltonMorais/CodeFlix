@@ -21,6 +21,7 @@ class Plan extends Model implements Transformable, TableInterface
         'description',
         'value',
         'duration',
+        'paypal_web_profile_id',
     ];
 
     protected $casts = [
@@ -30,6 +31,11 @@ class Plan extends Model implements Transformable, TableInterface
     public function getSkuAttribute()
     {
         return "plan-{$this->id}";
+    }
+
+    public function webProfile()
+    {
+        return $this->belongsTo(PaypalWebProfile::class);
     }
     /**
      * A list of headers to be used when a table is displayed

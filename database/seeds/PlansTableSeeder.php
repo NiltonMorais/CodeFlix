@@ -11,12 +11,18 @@ class PlansTableSeeder extends Seeder
      */
     public function run()
     {
+        $webProfiles = app(\CodeFlix\Repositories\Interfaces\PaypalWebProfileRepository::class)->all();
+
         factory(\CodeFlix\Models\Plan::class,1)->states(
             \CodeFlix\Models\Plan::DURATION_MONTHLY
-        )->create();
+        )->create([
+            'paypal_web_profile_id' => $webProfiles->random()->id
+        ]);
 
         factory(\CodeFlix\Models\Plan::class,1)->states(
             \CodeFlix\Models\Plan::DURATION_YEARLY
-        )->create();
+        )->create([
+            'paypal_web_profile_id' => $webProfiles->random()->id
+        ]);
     }
 }
