@@ -56,4 +56,14 @@ class WebProfileClient
 
         return $paypalWebProfile->create($this->apiContext);
     }
+
+    public function update(PaypalWebProfile $webProfileModel)
+    {
+
+    }
+
+    public function delete($webProfileId)
+    {
+
+    }
 }

@@ -17,7 +17,41 @@ class PaypalWebProfileRepositoryEloquent extends BaseRepository implements Paypa
     public function create(array $attributes)
     {
         $attributes['code'] = 'processing';
-        parent::create($attributes);
+        \DB::beginTransaction();
+        try {
+            $model = parent::create($attributes);
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            throw $e;
+        }
+        \DB::commit();
+        return $model;
+    }
+
+    public function update(array $attributes, $id)
+    {
+        \DB::beginTransaction();
+        try {
+            $model = parent::update($attributes, $id);
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            throw $e;
+        }
+        \DB::commit();
+        return $model;
+    }
+
+    public function delete($id)
+    {
+        \DB::beginTransaction();
+        try {
+            $result = parent::delete($id);
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            throw $e;
+        }
+        \DB::commit();
+        return $result;
     }
 
     /**

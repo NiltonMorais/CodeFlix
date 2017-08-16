@@ -47,6 +47,5 @@ class CreatePaypalWebProfileListener
         $this->webProfileRepository->update([
             'code' => $paypalWebProfile->getId()
         ], $model->id);
-
     }
 }

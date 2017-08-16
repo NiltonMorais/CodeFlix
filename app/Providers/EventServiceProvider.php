@@ -21,6 +21,12 @@ class EventServiceProvider extends ServiceProvider
         \Prettus\Repository\Events\RepositoryEntityCreated::class => [
             \CodeFlix\Listeners\CreateSubscriptionListener::class,
             \CodeFlix\Listeners\CreatePaypalWebProfileListener::class,
+        ],
+        \Prettus\Repository\Events\RepositoryEntityUpdated::class => [
+            \CodeFlix\Listeners\UpdatePaypalWebProfileListener::class,
+        ],
+        \Prettus\Repository\Events\RepositoryEntityDeleted::class => [
+            \CodeFlix\Listeners\DeletePaypalWebProfileListener::class,
         ]
     ];
 
