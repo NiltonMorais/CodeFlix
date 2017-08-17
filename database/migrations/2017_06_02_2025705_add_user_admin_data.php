@@ -15,7 +15,7 @@ class AddUserAdminData extends Migration
     public function up()
     {
         $model = User::create([
-            'name' => env('ADMIN_DEFAULT_NAME','Admin'),
+            'name' => env('ADMIN_DEFAULT_NAME','Admin Silva'),
             'email' => env('ADMIN_DEFAULT_EMAIL','admin@user.com'),
             'password' => bcrypt(env('ADMIN_DEFAULT_PASSWORD','secret')),
             'role' => User::ROLE_ADMIN,

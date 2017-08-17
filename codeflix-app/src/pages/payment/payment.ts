@@ -1,8 +1,9 @@
 import {Component} from "@angular/core";
-import {IonicPage, NavController, NavParams} from "ionic-angular";
+import {IonicPage, LoadingController, NavController, NavParams} from "ionic-angular";
 import scriptjs from "scriptjs";
 import {UserResource} from "../../providers/resources/user.resource";
 import {PaymentResource} from "../../providers/resources/payment.resource";
+import {Subject} from "rxjs/Subject";
 
 declare var PAYPAL;
 
@@ -24,26 +25,58 @@ export class PaymentPage {
     planId = null;
     ppplusLoaded = false;
     ppp = null;
+    subject = new Subject;
+    loading = null;
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
+                public loadingCtrl: LoadingController,
                 public userResource: UserResource,
                 public paymentResource: PaymentResource) {
         this.planId = +this.navParams.get('plan');
     }
 
     ionViewDidLoad() {
-        scriptjs('https://www.paypalobjects.com/webstatic/ppplusdcc/ppplusdcc.min.js', () => {
-
+        this.loading = this.loadingCtrl.create({
+            content: 'Carregando...'
         });
-        this.userResource.get().subscribe(user => this.user = user);
-        this.paymentResource.get(this.planId).subscribe(payment => this.payment = payment);
+        this.loading.present();
+
+        this.subject.subscribe(() => {
+            this.makePayPalPlus();
+        }, () => {
+            this.loading.dismiss();
+        });
+
+        scriptjs('https://www.paypalobjects.com/webstatic/ppplusdcc/ppplusdcc.min.js', () => {
+            if (typeof PAYPAL != "undefined") {
+                this.ppplusLoaded = true;
+                this.subject.next();
+            } else {
+                this.subject.error('PayPal Plus not loaded');
+            }
+        });
+
+        this.userResource.get().subscribe(user => {
+            this.user = user;
+            this.subject.next();
+        }, () => {
+            this.subject.error('User not loaded');
+        });
+
+        this.paymentResource.get(this.planId).subscribe(payment => {
+            this.payment = payment;
+            this.subject.next()
+        }, () => {
+            this.subject.error('Payment not loaded');
+        });
     }
 
-    makePayPalPlus(){
-        if(this.ppplusLoaded && this.payment != null && this.user != null){
+    makePayPalPlus() {
+        if (this.ppplusLoaded && this.payment != null && this.user != null) {
+            this.loading.dismiss();
             this.ppp = PAYPAL.apps.PPP({
-                approvalUrl: this.payment.approvalUrl,
+                approvalUrl: this.payment.approval_url,
                 placeholder: 'ppplus',
                 mode: 'sandbox',
                 country: 'BR',

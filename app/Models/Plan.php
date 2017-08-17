@@ -35,7 +35,7 @@ class Plan extends Model implements Transformable, TableInterface
 
     public function webProfile()
     {
-        return $this->belongsTo(PaypalWebProfile::class);
+        return $this->belongsTo(PaypalWebProfile::class,'paypal_web_profile_id');
     }
     /**
      * A list of headers to be used when a table is displayed
