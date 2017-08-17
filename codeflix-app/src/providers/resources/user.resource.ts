@@ -1,8 +1,10 @@
 import {Injectable} from "@angular/core";
 import {Headers, Http, RequestOptions} from "@angular/http";
 import "rxjs/add/operator/toPromise";
+import "rxjs/add/operator/map";
 import {Env} from "../../models/env";
 import {AuthHttp} from "angular2-jwt";
+import {Observable} from "rxjs/Observable";
 
 declare var ENV: Env;
 /*
@@ -39,4 +41,8 @@ export class UserResource {
             .then(response => response.json().user);
     }
 
+    get():Observable<Object>{
+        return this.authHttp.get(`${ENV.API_URL}/user`)
+            .map(response => response.json().user);
+    }
 }

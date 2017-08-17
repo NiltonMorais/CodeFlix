@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
 import {IonicPage, NavController, NavParams} from "ionic-angular";
 import scriptjs from "scriptjs";
+import {UserResource} from "../../providers/resources/user.resource";
+import {PaymentResource} from "../../providers/resources/payment.resource";
 
 declare var PAYPAL;
 
@@ -17,24 +19,42 @@ declare var PAYPAL;
 })
 export class PaymentPage {
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    user = null;
+    payment = null;
+    planId = null;
+    ppplusLoaded = false;
+    ppp = null;
+
+    constructor(public navCtrl: NavController,
+                public navParams: NavParams,
+                public userResource: UserResource,
+                public paymentResource: PaymentResource) {
+        this.planId = +this.navParams.get('plan');
     }
 
     ionViewDidLoad() {
         scriptjs('https://www.paypalobjects.com/webstatic/ppplusdcc/ppplusdcc.min.js', () => {
-            let ppp = PAYPAL.apps.PPP({
-                approvalUrl: '',
+
+        });
+        this.userResource.get().subscribe(user => this.user = user);
+        this.paymentResource.get(this.planId).subscribe(payment => this.payment = payment);
+    }
+
+    makePayPalPlus(){
+        if(this.ppplusLoaded && this.payment != null && this.user != null){
+            this.ppp = PAYPAL.apps.PPP({
+                approvalUrl: this.payment.approvalUrl,
                 placeholder: 'ppplus',
                 mode: 'sandbox',
                 country: 'BR',
                 language: 'pt_BR',
-                payerFirstName: 'Nilton',
-                payerLastName: 'Morais',
-                payerEmail: 'admin@user.com',
-                payerTaxId: '34298482456',
+                payerFirstName: this.user.name.split(" ")[0],
+                payerLastName: this.user.name.split(" ")[1],
+                payerEmail: this.user.email,
+                payerTaxId: this.user.cpf,
                 payerTaxIdType: 'BR_CPF',
             });
-        });
+        }
     }
 
 }

@@ -26,6 +26,7 @@ import {PlansPage} from "../pages/plans/plans";
 import {TextMaskModule} from "angular2-text-mask";
 import {UserResource} from "../providers/resources/user.resource";
 import {PlanResource} from '../providers/resources/plan.resource';
+import { PaymentResource } from '../providers/resources/payment.resource';
 declare var ENV: Env;
 @NgModule({
     declarations: [
@@ -80,6 +81,7 @@ declare var ENV: Env;
         Facebook,
         UserResource,
         PlanResource,
+        PaymentResource,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         {
             provide: AuthHttp,
