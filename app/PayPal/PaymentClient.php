@@ -11,6 +11,7 @@ use PayPal\Api\ItemList;
 use PayPal\Api\Payee;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
+use PayPal\Api\PaymentExecution;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use PayPal\Rest\ApiContext;
@@ -27,12 +28,41 @@ class PaymentClient
         $this->apiContext = $apiContext;
     }
 
-    public function doPayment(Plan $plan): Order{
-        // fazer o pagamento com o paypal
-        $event = new PayPalPaymentApproved($plan);
+    public function get($paymentId)
+    {
+        return Payment::get($paymentId,$this->apiContext);
+    }
+
+    public function doPayment(Plan $plan, $paymentId, $payerId): Order
+    {
+        $payment = Payment::get($paymentId, $this->apiContext);
+
+        $execution = new PaymentExecution();
+        $execution->setPayerId($payerId);
+
+        $details = new Details();
+        $details
+            ->setShipping(0)
+            ->setTax(0)
+            ->setSubtotal($plan->value);
+
+        $amount = new Amount();
+        $amount
+            ->setCurrency('BRL')
+            ->setTotal($plan->value)
+            ->setDetails($details);
+
+        $transaction = new Transaction();
+        $transaction
+            ->setAmount($amount);
+
+        $execution->addTransaction($transaction);
+
+        $payment->execute($execution,$this->apiContext);
+
+        $event = new PayPalPaymentApproved($plan,$payment);
         event($event);
         return $event->getOrder();
-        // fazer o cadastro da order
     }
 
     public function makePayment(Plan $plan){

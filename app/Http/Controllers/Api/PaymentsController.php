@@ -27,9 +27,14 @@ class PaymentsController extends Controller
             'payment_id' => $payment->getId()
         ];
     }
+
     public function approvalPayment(OrderRequest $request, Plan $plan)
     {
-        $order = $this->paymentClient->doPayment($plan);
+        $order = $this->paymentClient->doPayment(
+            $plan,
+            $request->get('payment_id'),
+            $request->get('payer_id')
+        );
         return $order;
     }
 }

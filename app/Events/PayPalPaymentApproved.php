@@ -4,6 +4,7 @@ namespace CodeFlix\Events;
 
 use CodeFlix\Models\Order;
 use CodeFlix\Models\Plan;
+use PayPal\Api\Payment;
 
 class PayPalPaymentApproved
 {
@@ -16,16 +17,28 @@ class PayPalPaymentApproved
      * @var Order
      */
     private $order;
+    /**
+     * @var Payment
+     */
+    private $payment;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Plan $plan)
+    public function __construct(Plan $plan, Payment $payment)
     {
-        //
         $this->plan = $plan;
+        $this->payment = $payment;
+    }
+
+    /**
+     * @return Payment
+     */
+    public function getPayment(): Payment
+    {
+        return $this->payment;
     }
 
     /**

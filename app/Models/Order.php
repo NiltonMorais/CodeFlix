@@ -12,6 +12,7 @@ class Order extends Model implements Transformable
 
     protected $fillable = [
         'user_id',
+        'code',
         'value'
     ];
 
