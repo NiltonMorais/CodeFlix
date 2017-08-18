@@ -97,6 +97,7 @@ class PaymentClient
 
         $transaction = new Transaction();
         $transaction
+            ->setItemList($itemList)
             ->setAmount($amount)
             ->setDescription("Pagamento do plano de assinatura")
             ->setPayee($payee)
