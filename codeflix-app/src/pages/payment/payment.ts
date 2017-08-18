@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {IonicPage, LoadingController, NavController, NavParams} from "ionic-angular";
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from "ionic-angular";
 import scriptjs from "scriptjs";
 import {UserResource} from "../../providers/resources/user.resource";
 import {PaymentResource} from "../../providers/resources/payment.resource";
@@ -31,6 +31,7 @@ export class PaymentPage {
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 public loadingCtrl: LoadingController,
+                public alertCtrl: AlertController,
                 public userResource: UserResource,
                 public paymentResource: PaymentResource) {
         this.planId = +this.navParams.get('plan');
@@ -76,6 +77,7 @@ export class PaymentPage {
         if (this.ppplusLoaded && this.payment != null && this.user != null) {
             this.loading.dismiss();
             this.ppp = PAYPAL.apps.PPP({
+                buttonLocation: 'outside',
                 approvalUrl: this.payment.approval_url,
                 placeholder: 'ppplus',
                 mode: 'sandbox',
@@ -86,8 +88,35 @@ export class PaymentPage {
                 payerEmail: this.user.email,
                 payerTaxId: this.user.cpf,
                 payerTaxIdType: 'BR_CPF',
+                onContinue(cardToken,payerId){
+
+                }
             });
         }
+    }
+
+    buy(){
+        this.ppp.doContinue();
+    }
+
+    doPayment(payerId){
+        this.loading = this.loadingCtrl.create({
+            content: 'Realizando pagamento...'
+        });
+        this.loading.present();
+
+        this.paymentResource.doPayment(this.planId,this.payment.payment_id,payerId)
+            .subscribe(()=>{
+
+            },()=>{
+                this.loading.dismiss();
+                let alert = this.alertCtrl.create({
+                    title: 'Mensagem de erro',
+                    subTitle: 'Seu pagamento não foi aprovado.',
+                    buttons: ['OK']
+                });
+                alert.present();
+            });
     }
 
 }
