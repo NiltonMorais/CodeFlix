@@ -4,6 +4,7 @@ import scriptjs from "scriptjs";
 import {UserResource} from "../../providers/resources/user.resource";
 import {PaymentResource} from "../../providers/resources/payment.resource";
 import {Subject} from "rxjs/Subject";
+import {Auth} from "../../providers/auth";
 
 declare var PAYPAL;
 
@@ -33,6 +34,7 @@ export class PaymentPage {
                 public loadingCtrl: LoadingController,
                 public alertCtrl: AlertController,
                 public userResource: UserResource,
+                public auth: Auth,
                 public paymentResource: PaymentResource) {
         this.planId = +this.navParams.get('plan');
     }
@@ -108,7 +110,9 @@ export class PaymentPage {
 
         this.paymentResource.doPayment(this.planId,this.payment.payment_id,payerId)
             .subscribe(()=>{
-                console.log('sucesso!');
+                this.auth.refresh().then(() => {
+                    this.navCtrl.setRoot('HomeSubscriberPage');
+                });
             },()=>{
                 this.loading.dismiss();
                 let alert = this.alertCtrl.create({

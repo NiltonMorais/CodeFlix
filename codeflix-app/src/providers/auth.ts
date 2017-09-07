@@ -68,6 +68,13 @@ export class Auth {
             });
     }
 
+    refresh():Promise<Object>{
+        return this.jwtClient.refreshToken()
+            .then(() => {
+                return this.user();
+            })
+    }
+
     logout() {
         return this.jwtClient.revokeToken()
             .then(() => {
