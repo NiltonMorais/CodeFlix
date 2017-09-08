@@ -17,6 +17,7 @@
         "laravel/socialite": "3.0",
         "laravel/tinker": "~1.0",
         "league/flysystem-aws-s3-v3": "~1.0",
+        "league/fractal": "0.16.0",
         "patricktalmadge/bootstrapper": "5.10.1",
         "paypal/rest-api-sdk-php": "1.11",
         "prettus/l5-repository": "2.6.18",

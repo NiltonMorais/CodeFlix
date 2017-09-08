@@ -21,7 +21,7 @@ class VideosController extends Controller
 
     public function index()
     {
-        $this->repository->pushCriteria(new FindPublishedAndCompletedCriteria());
+        //$this->repository->pushCriteria(new FindPublishedAndCompletedCriteria());
         return $this->repository->scopeQuery(function($query){
             return $query->take(50);
         })->paginate();

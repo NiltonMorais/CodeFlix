@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "19d9d4329df3e2eac10181d65298a96a",
+    "content-hash": "f821c1ee3627caf7727682d7e4dd4c21",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -4043,7 +4043,7 @@
                 "jwt",
                 "laravel"
             ],
-            "time": "2017-04-22 18:21:34"
+            "time": "2017-04-22T18:21:34+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
