@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {VideoResource} from "../../providers/resources/video.resource";
 
 /**
  * Generated class for the HomeSubscriberPage page.
@@ -14,11 +15,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HomeSubscriberPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  videos = [];
+  constructor(
+              public navCtrl: NavController,
+              public videoResource: VideoResource,
+              public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomeSubscriberPage');
+    this.videoResource.latest(1)
+        .subscribe((videos) => {
+          this.videos = videos;
+        });
   }
 
 }

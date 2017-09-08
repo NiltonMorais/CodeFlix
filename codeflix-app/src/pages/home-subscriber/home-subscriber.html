@@ -1,16 +1,51 @@
-<!--
-  Generated template for the HomeSubscriberPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>home-subscriber</ion-title>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Últimos vídeos</ion-title>
   </ion-navbar>
 
 </ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-sm-4 col-md-4
+               *ngFor="let video of videos"
+               navPush="VideoPlayPage"
+               [navParams]="{video: video.id}">
+        <ion-card>
+
+          <img src="">
+
+          <ion-card-content text-center>
+            <ion-card-title>{{(video.title)}}</ion-card-title>
+          </ion-card-content>
+
+          <ion-row>
+            <ion-item>
+              <ion-icon name="bookmark" item-left color="danger"></ion-icon>
+              <ion-badge item-right color="danger">Category</ion-badge>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="list-box" item-left color="secondary"></ion-icon>
+              <ion-badge item-right color="secondary">
+                Serie
+              </ion-badge>
+            </ion-item>
+            <ion-col>
+              <ion-note>
+                {{video.created_at}}
+              </ion-note>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
 
 
 <ion-content padding>

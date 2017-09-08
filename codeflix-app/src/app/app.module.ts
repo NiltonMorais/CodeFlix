@@ -27,6 +27,7 @@ import {TextMaskModule} from "angular2-text-mask";
 import {UserResource} from "../providers/resources/user.resource";
 import {PlanResource} from '../providers/resources/plan.resource';
 import { PaymentResource } from '../providers/resources/payment.resource';
+import {VideoResource} from "../providers/resources/video.resource";
 declare var ENV: Env;
 @NgModule({
     declarations: [
@@ -82,6 +83,7 @@ declare var ENV: Env;
         UserResource,
         PlanResource,
         PaymentResource,
+        VideoResource,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         {
             provide: AuthHttp,
