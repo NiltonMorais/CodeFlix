@@ -13,6 +13,9 @@ class OrdersTableSeeder extends Seeder
     {
         $users = app(\CodeFlix\Repositories\Interfaces\UserRepository::class)->all();
         $orders = factory(\CodeFlix\Models\Order::class,30)->make();
+        $order = $orders->first();
+        $order->user_id = 1;
+        $order->save();
         $orders->each(function($order)use($users){
            $order->user_id = $users->random()->id;
            $order->save();

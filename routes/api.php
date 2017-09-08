@@ -58,7 +58,7 @@ ApiRoute::version('v1',function(){
            // ÁREA DO ASSINANTE *****************
            // ************************************
            ApiRoute::group(['middleware' => 'check-subscriptions'],function(){
-
+                ApiRoute::resource('videos','VideosController',['only'=>['index','show']]);
            });
        });
     });
