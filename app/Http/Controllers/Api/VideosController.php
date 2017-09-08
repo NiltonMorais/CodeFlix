@@ -2,6 +2,7 @@
 
 namespace CodeFlix\Http\Controllers\Api;
 
+use CodeFlix\Criteria\FindPublishedAndCompletedCriteria;
 use CodeFlix\Http\Controllers\Controller;
 use CodeFlix\Models\Video;
 use CodeFlix\Repositories\Interfaces\VideoRepository;
@@ -20,11 +21,15 @@ class VideosController extends Controller
 
     public function index()
     {
-        return $this->repository->all();
+        $this->repository->pushCriteria(new FindPublishedAndCompletedCriteria());
+        return $this->repository->scopeQuery(function($query){
+            return $query->take(50);
+        })->paginate();
     }
 
-    public function show(Video $video)
+    public function show($id)
     {
-        return $video;
+        $this->repository->pushCriteria(new FindPublishedAndCompletedCriteria());
+        return $this->repository->find($id);
     }
 }
