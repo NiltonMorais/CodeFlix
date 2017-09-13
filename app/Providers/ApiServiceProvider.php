@@ -6,10 +6,12 @@ use CodeFlix\Exceptions\SubscriptionInvalidException;
 use CodeFlix\Models\Video;
 use CodeFlix\Transformers\VideoTransformer;
 use Dingo\Api\Exception\Handler;
+use Dingo\Api\Transformer\Adapter\Fractal;
 use Dingo\Api\Transformer\Factory;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\ValidationException;
+use League\Fractal\Manager;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class ApiServiceProvider extends ServiceProvider
@@ -38,6 +40,9 @@ class ApiServiceProvider extends ServiceProvider
     private function registerTransformers()
     {
         $transformer = app(Factory::class);
+        $transformer->setAdapter(function($app){
+            return new Fractal(new Manager(),'include',',',false);
+        });
         $transformer->register(Video::class,VideoTransformer::class);
     }
 

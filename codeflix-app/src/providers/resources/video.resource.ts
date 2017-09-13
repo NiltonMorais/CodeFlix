@@ -4,6 +4,7 @@ import "rxjs/add/operator/map";
 import {Env} from "../../models/env";
 import {AuthHttp} from "angular2-jwt";
 import {Observable} from "rxjs/Observable";
+import {RequestOptions, URLSearchParams} from "@angular/http";
 
 declare var ENV: Env;
 
@@ -20,8 +21,13 @@ export class VideoResource {
     }
 
     latest(page: number): Observable<any> {
+        let params = new URLSearchParams();
+        params.set('page',page+'');
+        params.set('include','serie_title,categories_name');
+
+        let requestOptions = new RequestOptions({params});
         return this.authHttp
-            .get(`${ENV.API_URL}/videos`)
+            .get(`${ENV.API_URL}/videos`,requestOptions)
             .map(response => response.json().data);
     }
 
