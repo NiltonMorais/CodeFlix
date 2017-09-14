@@ -32,3 +32,14 @@ ion-app{
     }
   }
 }
+
+.card-video-play{
+  position: relative;
+  text-align: center;
+  div{
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    font-size: 40px;
+  }
+}

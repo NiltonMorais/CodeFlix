@@ -27,6 +27,7 @@
     "@ionic-native/facebook": "^4.0.1",
     "@ionic-native/splash-screen": "3.12.1",
     "@ionic-native/status-bar": "3.12.1",
+    "@ionic-native/streaming-media": "^4.2.1",
     "@ionic/storage": "2.0.1",
     "angular2-jwt": "^0.2.3",
     "angular2-text-mask": "^8.0.1",

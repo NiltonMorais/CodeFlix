@@ -12,11 +12,19 @@
   </ion-header>
 
   <ion-content>
-    <ion-list>
+    <ion-list *ngIf="!(user?.subscription_valid);else menu_subscriber">
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" color="dark">
         {{p.title}}
       </button>
     </ion-list>
+    <!-- Menu do assinante -->
+    <ng-template #menu_subscriber>
+      <ion-list>
+        <button menuClose ion-item *ngFor="let p of pagesSubscriber" (click)="openPage(p)" color="dark">
+          {{p.title}}
+        </button>
+      </ion-list>
+    </ng-template>
   </ion-content>
 
   <ion-footer>

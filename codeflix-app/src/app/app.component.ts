@@ -4,11 +4,11 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {HomePage} from '../pages/home/home';
-import {ListPage} from '../pages/list/list';
 import {LoginPage} from "../pages/login/login";
 import {Auth} from "../providers/auth";
 import {Redirector} from "../providers/redirector";
 import md5 from 'crypto-md5';
+import {HomeSubscriberPage} from "../pages/home-subscriber/home-subscriber";
 
 @Component({
     templateUrl: 'app.html'
@@ -18,6 +18,7 @@ export class MyApp {
 
     rootPage: any = LoginPage;
 
+    pagesSubscriber: Array<{ title: string, component: any }>;
     pages: Array<{ title: string, component: any }>;
     user: any;
     gravatarUrl = 'https://www.gravatar.com/avatar/nouser.jpg';
@@ -30,9 +31,12 @@ export class MyApp {
         this.initializeApp();
 
         // used for an example of ngFor and navigation
+        this.pagesSubscriber = [
+            {title: 'Home', component: HomeSubscriberPage},
+        ];
+
         this.pages = [
-            {title: 'Home', component: HomePage},
-            {title: 'List', component: ListPage}
+            {title: 'Assine Agora', component: HomePage},
         ];
 
     }

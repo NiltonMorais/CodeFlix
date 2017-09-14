@@ -14,8 +14,14 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12 *ngIf="video | async;let video;">
-        <ion-card>
+        <ion-card class="card-video-play" (click)="play()">
           <img [src]="video.thumb_small_url">
+          <div>
+            <ion-icon name="play"></ion-icon>
+          </div>
+        </ion-card>
+
+        <ion-card>
           <ion-card-content text-center>
             <ion-card-title>
               {{video.title}}

@@ -29,6 +29,7 @@ import {PlanResource} from '../providers/resources/plan.resource';
 import { PaymentResource } from '../providers/resources/payment.resource';
 import {VideoResource} from "../providers/resources/video.resource";
 import {VideoPlayPage} from "../pages/video-play/video-play";
+import {StreamingMedia} from "@ionic-native/streaming-media";
 declare var ENV: Env;
 @NgModule({
     declarations: [
@@ -88,6 +89,7 @@ declare var ENV: Env;
         PlanResource,
         PaymentResource,
         VideoResource,
+        StreamingMedia,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         {
             provide: AuthHttp,
