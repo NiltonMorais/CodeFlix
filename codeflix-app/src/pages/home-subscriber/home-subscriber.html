@@ -10,6 +10,13 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingText="Puxe para atualizar"
+            refreshingText="Carregando...">
+
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-grid>
     <ion-row>
       <ion-col col-12 col-sm-4 col-md-4
