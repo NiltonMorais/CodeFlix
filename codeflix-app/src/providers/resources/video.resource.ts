@@ -28,7 +28,7 @@ export class VideoResource {
         let requestOptions = new RequestOptions({params});
         return this.authHttp
             .get(`${ENV.API_URL}/videos`,requestOptions)
-            .map(response => response.json().data);
+            .map(response => response.json());
     }
 
     get (id: number): Observable<any> {

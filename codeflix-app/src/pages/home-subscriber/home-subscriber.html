@@ -20,7 +20,7 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12 col-sm-4 col-md-4
-               *ngFor="let video of videos"
+               *ngFor="let video of videos.data"
                navPush="VideoPlayPage"
                [navParams]="{video: video.id}">
         <ion-card>
@@ -54,6 +54,10 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" [enabled]="canLoadingMoreVideos">
+    <ion-infinite-scroll-content>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
 
 

@@ -15,8 +15,13 @@ import {VideoResource} from "../../providers/resources/video.resource";
 })
 export class HomeSubscriberPage {
 
-  videos = [];
+  videos = {
+      data: []
+  };
+
   page = 1;
+  canLoadingMoreVideos = true;
+
   constructor(
               public navCtrl: NavController,
               public videoResource: VideoResource,
@@ -32,11 +37,24 @@ export class HomeSubscriberPage {
 
   doRefresh(refresher){
       this.page = 1;
+      this.canLoadingMoreVideos = true;
       this.getVideos()
           .subscribe((videos) => {
               this.videos = videos;
               refresher.complete();
           },() => refresher.complete());
+  }
+
+  doInfinite(infiniteScroll){
+    this.page++;
+      this.getVideos()
+          .subscribe((videos) => {
+              this.videos.data = this.videos.data.concat(videos.data);
+              if(videos.data.length == 0){
+                  this.canLoadingMoreVideos = false;
+              }
+              infiniteScroll.complete();
+          },() => infiniteScroll.complete());
   }
 
   getVideos(){

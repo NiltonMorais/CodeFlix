@@ -18,7 +18,7 @@ class VideosTableSeeder extends Seeder
         $collectionThumbs = $this->getThumbs();
         $collectionVideos = $this->getVideos();
 
-        factory(\CodeFlix\Models\Video::class,2)
+        factory(\CodeFlix\Models\Video::class,55)
             ->create()
             ->each(function($video) use($series,$categories, $repository, $collectionThumbs, $collectionVideos){
                 $repository->uploadThumb($video,$collectionThumbs->random());
