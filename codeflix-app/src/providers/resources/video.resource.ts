@@ -20,11 +20,11 @@ export class VideoResource {
     constructor(public authHttp: AuthHttp) {
     }
 
-    latest(page: number): Observable<any> {
+    latest(page:number, search:string): Observable<any> {
         let params = new URLSearchParams();
         params.set('page',page+'');
         params.set('include','serie_title,categories_name');
-
+        params.set('search',search);
         let requestOptions = new RequestOptions({params});
         return this.authHttp
             .get(`${ENV.API_URL}/videos`,requestOptions)

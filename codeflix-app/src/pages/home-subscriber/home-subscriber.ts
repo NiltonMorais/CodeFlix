@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {VideoResource} from "../../providers/resources/video.resource";
+import {FormControl} from "@angular/forms";
+import "rxjs/add/operator/debounceTime";
 
 /**
  * Generated class for the HomeSubscriberPage page.
@@ -10,54 +12,77 @@ import {VideoResource} from "../../providers/resources/video.resource";
  */
 @IonicPage()
 @Component({
-  selector: 'page-home-subscriber',
-  templateUrl: 'home-subscriber.html',
+    selector: 'page-home-subscriber',
+    templateUrl: 'home-subscriber.html',
 })
 export class HomeSubscriberPage {
 
-  videos = {
-      data: []
-  };
+    videos = {
+        data: []
+    };
 
-  page = 1;
-  canLoadingMoreVideos = true;
+    page = 1;
+    canLoadingMoreVideos = true;
+    showSearchBar = false;
+    search = "";
+    formSearchControl = new FormControl();
 
-  constructor(
-              public navCtrl: NavController,
-              public videoResource: VideoResource,
-              public navParams: NavParams) {
-  }
+    constructor(public navCtrl: NavController,
+                public videoResource: VideoResource,
+                public navParams: NavParams) {
+    }
 
-  ionViewDidLoad() {
-      this.getVideos()
-        .subscribe((videos) => {
-          this.videos = videos;
-        });
-  }
+    ionViewDidLoad() {
+        this.searchVideos();
+        this.getVideos()
+            .subscribe((videos) => {
+                this.videos = videos;
+            });
+    }
 
-  doRefresh(refresher){
-      this.page = 1;
-      this.canLoadingMoreVideos = true;
-      this.getVideos()
-          .subscribe((videos) => {
-              this.videos = videos;
-              refresher.complete();
-          },() => refresher.complete());
-  }
+    searchVideos() {
+        this.formSearchControl
+            .valueChanges
+            .debounceTime(1500)
+            .subscribe(() => {
+                if(this.search=="" || !this.search){
+                    return;
+                }
+                this.reset();
+                this.getVideos()
+                    .subscribe((videos) => {
+                        this.videos = videos;
+                    });
+            });
+    }
 
-  doInfinite(infiniteScroll){
-    this.page++;
-      this.getVideos()
-          .subscribe((videos) => {
-              this.videos.data = this.videos.data.concat(videos.data);
-              if(videos.data.length == 0){
-                  this.canLoadingMoreVideos = false;
-              }
-              infiniteScroll.complete();
-          },() => infiniteScroll.complete());
-  }
+    doRefresh(refresher) {
+        this.reset();
+        this.getVideos()
+            .subscribe((videos) => {
+                this.videos = videos;
+                refresher.complete();
+            }, () => refresher.complete());
+    }
 
-  getVideos(){
-      return this.videoResource.latest(this.page);
-  }
+    doInfinite(infiniteScroll) {
+        this.page++;
+        this.getVideos()
+            .subscribe((videos) => {
+                this.videos.data = this.videos.data.concat(videos.data);
+                if (videos.data.length == 0) {
+                    this.canLoadingMoreVideos = false;
+                }
+                infiniteScroll.complete();
+            }, () => infiniteScroll.complete());
+    }
+
+    getVideos() {
+        return this.videoResource.latest(this.page, this.search);
+    }
+
+    reset() {
+        this.page = 1;
+        this.canLoadingMoreVideos = true;
+    }
 }
