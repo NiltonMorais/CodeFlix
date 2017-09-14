@@ -32,8 +32,8 @@ class VideoTransformer extends TransformerAbstract
             'description'         => $model->description,
             'thumb_small_url'         => $model->thumb_small_asset,
             'file_url'         => $model->file_asset,
-            'created_at' => $model->created_at,
-            'updated_at' => $model->updated_at
+            'created_at' => $model->created_at->format(\DateTime::ISO8601),
+            'updated_at' => $model->updated_at->format(\DateTime::ISO8601)
         ];
     }
 
