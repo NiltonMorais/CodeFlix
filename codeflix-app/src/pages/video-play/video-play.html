@@ -1,0 +1,52 @@
+<ion-header>
+
+  <ion-navbar color="dark">
+    <ion-title *ngIf="video | async;let video; else loading">{{video.title}}</ion-title>
+    <ng-template #loading>
+      <ion-title>Carregando...</ion-title>
+    </ng-template>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 *ngIf="video | async;let video;">
+        <ion-card>
+          <img [src]="video.thumb_small_url">
+          <ion-card-content text-center>
+            <ion-card-title>
+              {{video.title}}
+            </ion-card-title>
+          </ion-card-content>
+
+          <ion-row>
+            <ion-item color="danger">
+              <ion-icon name="bookmark" item-left></ion-icon>
+              Categorias
+            </ion-item>
+            <ion-item *ngFor="let category of video.categories_name">
+              <h2>{{category}}</h2>
+            </ion-item>
+            <ion-item color="secundary" *ngIf="video.serie_title">
+              <ion-icon name="list-box" item-left></ion-icon>
+              Série
+            </ion-item>
+            <ion-item *ngIf="video.serie_title">
+              <ion-badge item-right color="secondary">
+                {{video.serie_title}}
+              </ion-badge>
+            </ion-item>
+            <ion-col>
+              <ion-note>
+                {{video.created_at}}
+              </ion-note>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

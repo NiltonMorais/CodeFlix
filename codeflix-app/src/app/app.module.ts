@@ -28,6 +28,7 @@ import {UserResource} from "../providers/resources/user.resource";
 import {PlanResource} from '../providers/resources/plan.resource';
 import { PaymentResource } from '../providers/resources/payment.resource';
 import {VideoResource} from "../providers/resources/video.resource";
+import {VideoPlayPage} from "../pages/video-play/video-play";
 declare var ENV: Env;
 @NgModule({
     declarations: [
@@ -40,6 +41,7 @@ declare var ENV: Env;
         AddCpfPage,
         PaymentPage,
         PlansPage,
+        VideoPlayPage,
     ],
     imports: [
         IonicStorageModule.forRoot({
@@ -57,6 +59,7 @@ declare var ENV: Env;
                 {component: PlansPage, name: 'PlansPage', segment: 'plans'},
                 {component: AddCpfPage, name: 'AddCpfPage', segment: 'add-cpf'},
                 {component: HomeSubscriberPage, name: 'HomeSubscriberPage', segment: 'subscriber/home'},
+                {component: VideoPlayPage, name: 'VideoPlayPage', segment: 'video/:video/play'},
             ]
         }),
     ],
@@ -71,6 +74,7 @@ declare var ENV: Env;
         AddCpfPage,
         PaymentPage,
         PlansPage,
+        VideoPlayPage,
     ],
     providers: [
         JwtHelper,

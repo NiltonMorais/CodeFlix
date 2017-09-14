@@ -25,7 +25,7 @@ trait ThumbUploads
         $storage = $model->getStorageDisk();
         $thumbFile = $model->thumb_path;
         $format = \Image::format($thumbFile);
-        $thumbnailSmall = \Image::open($thumbFile)->thumbnail(new Box(64, 36));
+        $thumbnailSmall = \Image::open($thumbFile)->thumbnail(new Box(200, 144));
         $storage->put($model->thumb_small_relative, $thumbnailSmall->get($format));
     }
 

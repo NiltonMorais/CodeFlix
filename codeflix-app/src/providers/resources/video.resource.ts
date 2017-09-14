@@ -32,8 +32,18 @@ export class VideoResource {
     }
 
     get (id: number): Observable<any> {
+        let params = new URLSearchParams();
+        params.set('include','serie_title,categories_name');
+
+        let requestOptions = new RequestOptions({params});
         return this.authHttp
-            .get(`${ENV.API_URL}/videos/${id}`)
-            .map(response => response.json());
+            .get(`${ENV.API_URL}/videos/${id}`,requestOptions)
+            .map(response => {
+                let data = response.json();
+                let video = data.data;
+                video.serie_title = typeof video.serie_title == "undefined" ? null : data.data.serie_title.data.title;
+                video.categories_name = data.data.categories_name.data.names;
+                return video;
+            });
     }
 }

@@ -18,7 +18,7 @@
                [navParams]="{video: video.id}">
         <ion-card>
 
-          <img src="">
+          <img [src]="video.thumb_small_url">
 
           <ion-card-content text-center>
             <ion-card-title>{{(video.title)}}</ion-card-title>
