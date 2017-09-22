@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {VideoResource} from "../../providers/resources/video.resource";
 import {FormControl} from "@angular/forms";
 import "rxjs/add/operator/debounceTime";
+import {Auth} from "../../decorators/auth.decorator";
 
 /**
  * Generated class for the HomeSubscriberPage page.
@@ -10,6 +11,7 @@ import "rxjs/add/operator/debounceTime";
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+@Auth()
 @IonicPage()
 @Component({
     selector: 'page-home-subscriber',

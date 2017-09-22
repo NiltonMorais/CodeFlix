@@ -53,11 +53,13 @@ export class MyApp {
         this.platform.ready().then(() => {
             this.db.createSchema()
                 .then(()=>{
-                    this.userModel.insert({
+                    this.userModel.find(1)
+                        .then(user => {console.log(user)});
+                    /*this.userModel.insert({
                         id: 1,
                         name: "Nilton Morais",
                         email: "user@user.com"
-                    });
+                    });*/
                 });
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.

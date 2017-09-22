@@ -20,4 +20,17 @@ export abstract class DBModel {
         let sql = `INSERT INTO \`${this.table}\` (${columns.join(',')}) VALUES(${tokens})`;
         return this.db.executeSql(sql,objectValues(params));
     }
+
+    find(id):Promise<any>{
+        let sql = `SELECT * FROM ${this.table} WHERE id = ?`;
+        return this.db.executeSql(sql,[id])
+            .then(resultset => {
+                return resultset.rows.length ? resultset.rows.item(0) : null;
+            });
+    }
+
+    findByField(field, value){
+        let sql = `SELECT * FROM ${this.table} WHERE \`${field}\` = ?`;
+        return this.db.executeSql(sql,[value]);
+    }
 }
