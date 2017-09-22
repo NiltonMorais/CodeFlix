@@ -26,13 +26,20 @@ export class DB {
         });
     }
 
-    createSchema() {
-        this.openOrCreateDatabase()
+    createSchema(): Promise<any> {
+        return this.openOrCreateDatabase()
             .then((db: SQLiteObject) => {
                 let dbInstance = db._objectInstance;
-                this.sqlitePorter.importSqlToDb(dbInstance, sql)
+                return this.sqlitePorter.importSqlToDb(dbInstance, sql)
                     .then(() => console.log('SQLite imported'))
                     .catch(e => console.log(e));
+            });
+    }
+
+    executeSql(sql:string, params: Array<any>=[]):Promise<any>{
+        return this.openOrCreateDatabase()
+            .then((db: SQLiteObject) => {
+                return db.executeSql(sql,params);
             });
     }
 }

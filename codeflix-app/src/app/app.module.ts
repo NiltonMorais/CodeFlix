@@ -35,6 +35,7 @@ import 'moment/locale/pt-br';
 import {SQLite} from "@ionic-native/sqlite";
 import {SQLitePorter} from "@ionic-native/sqlite-porter";
 import {DB} from "../providers/sqlite/db";
+import {UserModel} from "../providers/sqlite/user.model";
 declare var ENV: Env;
 @NgModule({
     declarations: [
@@ -99,6 +100,7 @@ declare var ENV: Env;
         SQLite,
         SQLitePorter,
         DB,
+        UserModel,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         {
             provide: AuthHttp,
