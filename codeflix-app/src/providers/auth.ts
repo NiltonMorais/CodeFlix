@@ -5,6 +5,7 @@ import {JwtPayload} from "../models/jwt-payload";
 import {Facebook, FacebookLoginResponse} from "@ionic-native/facebook";
 import {UserResource} from "./resources/user.resource";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {UserModel} from "./sqlite/user.model";
 
 /*
  Generated class for the Auth provider.
@@ -20,7 +21,8 @@ export class Auth {
 
     constructor(public jwtClient: JwtClient,
                 public fb: Facebook,
-                public userResource: UserResource) {
+                public userResource: UserResource,
+                public userModel: UserModel) {
     }
 
     userSubject():BehaviorSubject<Object> {
@@ -51,7 +53,10 @@ export class Auth {
     login({email, password}): Promise<Object> {
         return this.jwtClient.accessToken({email, password})
             .then(() => {
-                return this.user();
+                return this.user()
+                    .then(user => {
+                    return user;
+                });
             });
     }
 
@@ -66,6 +71,10 @@ export class Auth {
                         return this.user();
                     });
             });
+    }
+
+    private saveUser(user){
+        this.userModel.save(user);
     }
 
     refresh():Promise<Object>{

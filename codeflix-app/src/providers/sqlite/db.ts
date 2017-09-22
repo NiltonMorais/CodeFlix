@@ -33,13 +33,15 @@ export class DB {
                 return this.sqlitePorter.importSqlToDb(dbInstance, sql)
                     .then(() => console.log('SQLite imported'))
                     .catch(e => console.log(e));
-            });
+            })
+            .catch(error => console.log(error));
     }
 
     executeSql(sql:string, params: Array<any>=[]):Promise<any>{
         return this.openOrCreateDatabase()
             .then((db: SQLiteObject) => {
                 return db.executeSql(sql,params);
-            });
+            })
+            .catch(error => console.log(error));
     }
 }
