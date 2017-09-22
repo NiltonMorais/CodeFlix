@@ -32,6 +32,9 @@ import {VideoPlayPage} from "../pages/video-play/video-play";
 import {StreamingMedia} from "@ionic-native/streaming-media";
 import {MomentModule} from "angular2-moment";
 import 'moment/locale/pt-br';
+import {SQLite} from "@ionic-native/sqlite";
+import {SQLitePorter} from "@ionic-native/sqlite-porter";
+import {DB} from "../providers/sqlite/db";
 declare var ENV: Env;
 @NgModule({
     declarations: [
@@ -93,6 +96,9 @@ declare var ENV: Env;
         PaymentResource,
         VideoResource,
         StreamingMedia,
+        SQLite,
+        SQLitePorter,
+        DB,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         {
             provide: AuthHttp,
