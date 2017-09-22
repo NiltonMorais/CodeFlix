@@ -6,6 +6,7 @@ import {Facebook, FacebookLoginResponse} from "@ionic-native/facebook";
 import {UserResource} from "./resources/user.resource";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {UserModel} from "./sqlite/user.model";
+import {AuthGuard} from "./auth-guard";
 
 /*
  Generated class for the Auth provider.
@@ -14,7 +15,7 @@ import {UserModel} from "./sqlite/user.model";
  for more info on providers and Angular DI.
  */
 @Injectable()
-export class Auth {
+export class Auth implements AuthGuard{
 
     private _user = null;
     private _userSubject = new BehaviorSubject(null);
@@ -84,7 +85,7 @@ export class Auth {
             })
     }
 
-    logout() {
+    logout():Promise<any>{
         return this.jwtClient.revokeToken()
             .then(() => {
                 this._user = null;

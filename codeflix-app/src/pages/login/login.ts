@@ -3,6 +3,7 @@ import {IonicPage, MenuController, NavController, NavParams, ToastController} fr
 import {Auth} from "../../providers/auth";
 import {HomePage} from "../home/home";
 import {HomeSubscriberPage} from "../home-subscriber/home-subscriber";
+import {AuthOffline} from "../../providers/auth-offline";
 
 /**
  * Generated class for the LoginPage page.
@@ -26,7 +27,8 @@ export class LoginPage {
                 public menuCtrl: MenuController,
                 public navParams: NavParams,
                 public toastCtrl: ToastController,
-                private auth: Auth) {
+                private auth: Auth,
+                private authOffline: AuthOffline) {
         this.menuCtrl.enable(false);
     }
 
@@ -45,6 +47,22 @@ export class LoginPage {
                     duration: 3000,
                     position: 'top',
                     cssClass: '.toast-reverse'
+                });
+                toast.present();
+            });
+    }
+
+    loginOffline() {
+        this.authOffline.login(this.user)
+            .then(user => {
+                this.afterLogin(user);
+            })
+            .catch(() => {
+                let toast = this.toastCtrl.create({
+                    message: 'Email inválido',
+                    duration: 3000,
+                    position: 'top',
+                    cssClass: '.toast-login-error'
                 });
                 toast.present();
             });
