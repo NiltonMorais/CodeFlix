@@ -3,6 +3,7 @@ import "rxjs/add/operator/map";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {UserModel} from "./sqlite/user.model";
 import {AuthGuard} from "./auth-guard";
+import {AppConfig} from "./app-config";
 
 @Injectable()
 export class AuthOffline implements AuthGuard {
@@ -12,6 +13,7 @@ export class AuthOffline implements AuthGuard {
     private userKey = 'userId';
 
     constructor(public userModel: UserModel,
+                public appConfig: AppConfig,
                 public storage: Storage) {
     }
 
@@ -43,9 +45,13 @@ export class AuthOffline implements AuthGuard {
                 if (!resultset.rows.length) {
                     return Promise.reject("User not found");
                 }
+                this.appConfig.setOff(true);
                 this._user = resultset.rows.item(0);
                 this._user.subscription_valid = true;
                 this._userSubject.next(this._user);
+                return this.storage.set(this.userKey,this._user.id);
+            })
+            .then(() => {
                 return this._user;
             });
     }

@@ -37,6 +37,8 @@ import {SQLitePorter} from "@ionic-native/sqlite-porter";
 import {DB} from "../providers/sqlite/db";
 import {UserModel} from "../providers/sqlite/user.model";
 import {AuthOffline} from "../providers/auth-offline";
+import {AppConfig} from "../providers/app-config";
+import {AuthFactory} from "../providers/auth-factory";
 declare var ENV: Env;
 @NgModule({
     declarations: [
@@ -92,6 +94,8 @@ declare var ENV: Env;
         SplashScreen,
         Auth,
         AuthOffline,
+        AppConfig,
+        AuthFactory,
         Redirector,
         Facebook,
         UserResource,

@@ -11,6 +11,7 @@ import md5 from 'crypto-md5';
 import {HomeSubscriberPage} from "../pages/home-subscriber/home-subscriber";
 import {DB} from "../providers/sqlite/db";
 import {UserModel} from "../providers/sqlite/user.model";
+import {AuthOffline} from "../providers/auth-offline";
 
 @Component({
     templateUrl: 'app.html'
@@ -29,6 +30,7 @@ export class MyApp {
                 public statusBar: StatusBar,
                 public splashScreen: SplashScreen,
                 public auth: Auth,
+                public authOffline: AuthOffline,
                 public redirector: Redirector,
                 public db: DB,
                 public userModel: UserModel,) {
@@ -50,6 +52,12 @@ export class MyApp {
             this.user = user;
             this.gravatar();
         });
+
+        this.authOffline.userSubject().subscribe(user => {
+           this.user = user;
+           this.gravatar();
+        });
+
         this.platform.ready().then(() => {
             this.db.createSchema()
                 .then(()=>{
@@ -70,7 +78,7 @@ export class MyApp {
 
     gravatar(){
         if(this.user){
-            this.gravatarUrl = `https://www.gravatar.com/avatar/${md5(this.user.email,'hex')}`;
+            this.gravatarUrl = `https://www.gravatar.com/avatar/${md5(this.user.email,'hex')}.jpg`;
         }
     }
 
