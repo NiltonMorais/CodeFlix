@@ -1532,3 +1532,16 @@ Stack trace:
 #45 C:\Users\Nilton\PhpstormProjects\CodeFlix\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #46 C:\Users\Nilton\PhpstormProjects\CodeFlix\server.php(21): require_once('C:\\Users\\Nilton...')
 #47 {main}  
+[2017-10-05 11:50:36] local.ERROR: Symfony\Component\Console\Exception\RuntimeException: The "-p" option does not exist. in C:\Users\Nilton\PhpstormProjects\CodeFlix\vendor\symfony\console\Input\ArgvInput.php:126
+Stack trace:
+#0 C:\Users\Nilton\PhpstormProjects\CodeFlix\vendor\symfony\console\Input\ArgvInput.php(107): Symfony\Component\Console\Input\ArgvInput->parseShortOptionSet('port=8081')
+#1 C:\Users\Nilton\PhpstormProjects\CodeFlix\vendor\symfony\console\Input\ArgvInput.php(86): Symfony\Component\Console\Input\ArgvInput->parseShortOption('-port=8081')
+#2 C:\Users\Nilton\PhpstormProjects\CodeFlix\vendor\symfony\console\Input\Input.php(63): Symfony\Component\Console\Input\ArgvInput->parse()
+#3 C:\Users\Nilton\PhpstormProjects\CodeFlix\vendor\symfony\console\Command\Command.php(222): Symfony\Component\Console\Input\Input->bind(Object(Symfony\Component\Console\Input\InputDefinition))
+#4 C:\Users\Nilton\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Console\Command.php(167): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle))
+#5 C:\Users\Nilton\PhpstormProjects\CodeFlix\vendor\symfony\console\Application.php(835): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 C:\Users\Nilton\PhpstormProjects\CodeFlix\vendor\symfony\console\Application.php(200): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\ServeCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 C:\Users\Nilton\PhpstormProjects\CodeFlix\vendor\symfony\console\Application.php(124): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 C:\Users\Nilton\PhpstormProjects\CodeFlix\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(122): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 C:\Users\Nilton\PhpstormProjects\CodeFlix\artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 {main}  
