@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS videos(
   thumb_url VARCHAR(255),
   file_url VARCHAR(255),
   serie_title VARCHAR(255) NULL,
+  user_id INTEGER,
   categories_name TEXT,
   created_at DATETIME
 );

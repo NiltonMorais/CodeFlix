@@ -12,6 +12,7 @@ import {HomeSubscriberPage} from "../pages/home-subscriber/home-subscriber";
 import {DB} from "../providers/sqlite/db";
 import {UserModel} from "../providers/sqlite/user.model";
 import {AuthOffline} from "../providers/auth-offline";
+import {DownloadsPage} from "../pages/downloads/downloads";
 
 @Component({
     templateUrl: 'app.html'
@@ -39,6 +40,7 @@ export class MyApp {
         // used for an example of ngFor and navigation
         this.pagesSubscriber = [
             {title: 'Home', component: HomeSubscriberPage},
+            {title: 'Downloads', component: DownloadsPage},
         ];
 
         this.pages = [

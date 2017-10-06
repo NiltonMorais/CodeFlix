@@ -4,6 +4,9 @@ import {VideoResource} from "../../providers/resources/video.resource";
 import {FormControl} from "@angular/forms";
 import "rxjs/add/operator/debounceTime";
 import {Auth} from "../../decorators/auth.decorator";
+import {VideoFactory} from "../../providers/video/video.factory";
+import {VideoDownload} from "../../providers/video/video.download";
+import {VideoAdapter} from "../../providers/video/video.adapter";
 
 /**
  * Generated class for the HomeSubscriberPage page.
@@ -28,10 +31,17 @@ export class HomeSubscriberPage {
     showSearchBar = false;
     search = "";
     formSearchControl = new FormControl();
+    videoAdapter: VideoAdapter;
 
     constructor(public navCtrl: NavController,
-                public videoResource: VideoResource,
-                public navParams: NavParams) {
+                public navParams: NavParams,
+                public videoFactory: VideoFactory,
+                public videoDownload: VideoDownload) {
+        this.videoAdapter = this.videoFactory.get();
+    }
+
+    getVideos() {
+        return this.videoAdapter.latest(this.page, this.search);
     }
 
     ionViewDidLoad() {
@@ -77,10 +87,6 @@ export class HomeSubscriberPage {
                 }
                 infiniteScroll.complete();
             }, () => infiniteScroll.complete());
-    }
-
-    getVideos() {
-        return this.videoResource.latest(this.page, this.search);
     }
 
     reset() {

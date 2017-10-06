@@ -22,15 +22,17 @@ export class AuthOffline implements AuthGuard {
     }
 
     user(): Promise<Object> {
-        return this.storage.get(this.userKey)
-            .then(id => {
-                return this.userModel.find(id);
-            })
-            .then(user => {
-                this._user = user;
-                this._userSubject.next(this._user);
-                return user;
-            });
+        return this._user ? Promise.resolve(this._user) :
+            this.storage.get(this.userKey)
+                .then(id => {
+                    return this.userModel.find(id);
+                })
+                .then(user => {
+                    this._user = user;
+                    this._user.subscription_valid = true;
+                    this._userSubject.next(this._user);
+                    return user;
+                });
     }
 
     check(): Promise<boolean> {
@@ -49,7 +51,7 @@ export class AuthOffline implements AuthGuard {
                 this._user = resultset.rows.item(0);
                 this._user.subscription_valid = true;
                 this._userSubject.next(this._user);
-                return this.storage.set(this.userKey,this._user.id);
+                return this.storage.set(this.userKey, this._user.id);
             })
             .then(() => {
                 return this._user;

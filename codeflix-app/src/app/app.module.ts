@@ -39,6 +39,11 @@ import {UserModel} from "../providers/sqlite/user.model";
 import {AuthOffline} from "../providers/auth-offline";
 import {AppConfig} from "../providers/app-config";
 import {AuthFactory} from "../providers/auth-factory";
+import {VideoModel} from "../providers/sqlite/video.model";
+import {VideoController} from "../providers/video/video.controller";
+import {VideoFactory} from "../providers/video/video.factory";
+import {VideoDownload} from "../providers/video/video.download";
+import {DownloadsPage} from "../pages/downloads/downloads";
 declare var ENV: Env;
 @NgModule({
     declarations: [
@@ -52,6 +57,7 @@ declare var ENV: Env;
         PaymentPage,
         PlansPage,
         VideoPlayPage,
+        DownloadsPage
     ],
     imports: [
         IonicStorageModule.forRoot({
@@ -71,6 +77,7 @@ declare var ENV: Env;
                 {component: AddCpfPage, name: 'AddCpfPage', segment: 'add-cpf'},
                 {component: HomeSubscriberPage, name: 'HomeSubscriberPage', segment: 'subscriber/home'},
                 {component: VideoPlayPage, name: 'VideoPlayPage', segment: 'video/:video/play'},
+                {component: DownloadsPage, name: 'DownloadsPage', segment: 'downloads'},
             ]
         }),
     ],
@@ -86,6 +93,7 @@ declare var ENV: Env;
         PaymentPage,
         PlansPage,
         VideoPlayPage,
+        DownloadsPage
     ],
     providers: [
         JwtHelper,
@@ -107,6 +115,10 @@ declare var ENV: Env;
         SQLitePorter,
         DB,
         UserModel,
+        VideoModel,
+        VideoController,
+        VideoFactory,
+        VideoDownload,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         {
             provide: AuthHttp,
