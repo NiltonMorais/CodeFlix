@@ -3,8 +3,8 @@ import {AuthFactory} from "../providers/auth-factory";
 import {Nav} from "ionic-angular";
 import {LoginPage} from "../pages/login/login";
 import {AuthGuard} from "../providers/auth-guard";
-export const Auth = () => {
-  return (target: any) => {
+function Auth(){
+  return function(target: any){
         target.prototype.ionViewCanEnter = function(){
             let property = Object.keys(this)
                 .find(value => this[value] instanceof Nav);
@@ -27,4 +27,5 @@ export const Auth = () => {
             })
         }
   }
-};
+}
+export {Auth}
